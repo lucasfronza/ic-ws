@@ -7,7 +7,7 @@ class Signup extends CI_Controller {
         $this->load->view('signup/new');
 	}
     
-    public function new_user()
+    public function new_user()//TODO cadastro esta aceitando emails e username iguais
     {
         $this->load->helper('form');
         $this->load->library('form_validation');
@@ -26,7 +26,6 @@ class Signup extends CI_Controller {
         else
         {
             $this->load->model('newuser_model');
-            echo "teste";
             $this->newuser_model->set_new_user();
             $this->load->view('signup/success');
         }
