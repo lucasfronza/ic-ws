@@ -8,7 +8,7 @@ class Signup extends CI_Controller {
 	}
     
     public function new_user()//TODO cadastro esta aceitando emails e username iguais
-    {
+    {                         //TODO criar um metodo de verificar email
         $this->load->helper('form');
         $this->load->library('form_validation');
 
