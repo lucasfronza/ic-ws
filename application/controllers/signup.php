@@ -2,33 +2,40 @@
 
 class Signup extends CI_Controller {
 
+    public function __construct() 
+    {
+		parent::__construct();
+        $this->load->model('signup_model');
+        $this->load->helper('security');
+        $this->load->helper('url');
+    }
 	public function index()
 	{
         $this->load->view('signup/new');
 	}
     
-    public function new_user()//TODO cadastro esta aceitando emails e username iguais
+    public function insert_user()
     {                         //TODO criar um metodo de verificar email
-        $this->load->helper('form');
-        $this->load->library('form_validation');
-
-
-        $this->form_validation->set_rules('name', 'Nome', 'required');
-        $this->form_validation->set_rules('surname', 'Sobrenome', 'required');
-        $this->form_validation->set_rules('username', 'Nome de usuário', 'required');
-        $this->form_validation->set_rules('password', 'Senha', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'required');
-
-        if ($this->form_validation->run() === FALSE)
-        {
-            $this->load->view('signup/new');
-        }
-        else
-        {
-            $this->load->model('newuser_model');
-            $this->newuser_model->set_new_user();
-            $this->load->view('signup/success');
-        }
+        
+        
+        $data = array(
+            'name' => $this->input->post('name'),
+            'surname' => $this->input->post('surname'),
+            'password' => do_hash($this->input->post('password')),//TODO salvar o MD5, ou outro hashing
+            'email' => $this->input->post('email'),
+            'phone' => $this->input->post('phone'),
+            'address' => $this->input->post('address'),
+            'city' => $this->input->post('city'),
+            'state' => $this->input->post('state')
+        );
+        $this->signup_model->set_new_user($data);
+        redirect('signup/success');
+        
+    }
+    
+    public function success()
+    {
+        $this->load->view('signup/success');
     }
 }
 

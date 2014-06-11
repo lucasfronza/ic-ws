@@ -1,36 +1,136 @@
-<h2>Cadastro</h2>
+<?php $this->load->helper('url'); ?>
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+	  <title>Cadastro</title>
+  </head>
 
-<?php echo validation_errors(); ?>
+  <body>
+	
+    <div class="navbar navbar-inverse" role="navigation">
+      <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="<?=site_url()?>">Menu</a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+        <li class="active"><a href="<?=site_url("signup")?>">CADASTRO</a></li>
+        <li><a href="<?=site_url("login")?>">LOGIN</a></li>
+        </ul>
+      </div>
+      </div>
+    </div>
+	
+	<div class="row">
+		<div class="col-md-offset-2 col-md-8">
+		
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+			   <h3 class="panel-title">CADASTRO</h3>
+		  </div>
+		  <div class="panel-body">
+			
+			<form action="<?=site_url('signup/insert_user')?>" method="post" class="form-horizontal" role="form" id="form-signup" onsubmit="return validate_signup();">
+			  
+        <div class="form-group" id="groupName">
+            <label for="name" class="col-sm-2 control-label">Nome</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="name" name="name">
+            </div>
+            <div class="col-sm-4">
+                <span id="errorName" class="help-block"></span>
+            </div>
+        </div>
+                
+        <div class="form-group" id="groupSurname">
+            <label for="surname" class="col-sm-2 control-label">Sobrenome</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="surname" name="surname">
+            </div>
+            <div class="col-sm-4">
+                <span id="errorSurname" class="help-block"></span>
+            </div>
+        </div>
 
-<?php echo form_open('signup/new_user') ?>
+        <div class="form-group" id="groupPassword">
+            <label for="password" class="col-sm-2 control-label">Senha</label>
+            <div class="col-sm-5">
+                <input type="password" class="form-control" id="password" name="password">
+            </div>
+            <div class="col-sm-4">
+                <span id="errorPassword" class="help-block"></span>
+            </div>
+        </div>
+                
+        <div class="form-group" id="groupPasswordChecker">
+            <label for="passwordChecker" class="col-sm-2 control-label">Repetir senha</label>
+            <div class="col-sm-5">
+                <input type="password" class="form-control" id="passwordChecker" name="passwordChecker" onblur="validate_password()">
+            </div>
+            <div class="col-sm-4">
+                <span id="errorPasswordChecker" class="help-block"></span>
+            </div>
+        </div>
+                
+        <div class="form-group" id="groupEmail">
+            <label for="email" class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" id="email" name="email">
+            </div>
+            <div class="col-sm-4">
+                <span id="errorEmail" class="help-block"></span>
+            </div>
+        </div>
+                
+        <div class="form-group" id="groupPhone">
+            <label for="phone" class="col-sm-2 control-label">Celular</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="phone" name="phone">
+            </div>
+        </div>
+                
+        <div class="form-group" id="groupAddress">
+            <label for="address" class="col-sm-2 control-label">Endereço</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="address" name="address">
+            </div>
+        </div>
+        
+        <div class="form-group" id="groupCity">
+            <label for="city" class="col-sm-2 control-label">Cidade</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="city" name="city">
+            </div>
+        </div>
 
-	<label for="name">Nome</label>
-	<input type="text" name="name" /><br />
-    
-    <label for="surname">Sobrenome</label>
-	<input type="text" name="surname" /><br />
+         <div class="form-group" id="groupState">
+            <label for="state" class="col-sm-2 control-label">Estado</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="state" name="state">
+            </div>
+        </div>       
+        
+        
+        <hr>
+			  <div class="form-group">
+				  <div class="col-sm-offset-8 col-sm-4">
+				    <button type="submit" class="btn btn-primary">Cadastrar</button>
+				  </div>
+			  </div>
+			</form>
+		  </div>
+		</div>
+		
+	  </div>
+	</div>
+		
+    <script src="<?=base_url('static/resources/jquery.min.js')?>"></script>
+    <script src="<?=base_url('static/resources/bootstrap.min.js')?>"></script>
+    <script src="<?=base_url('static/resources/validation.js')?>"></script>
+  
 
-    <label for="username">Nome de usuário</label>
-	<input type="text" name="username" /><br />
-
-    <label for="password">Senha</label>
-	<input type="text" name="password" /><br />
-
-    <label for="email">Email</label>
-	<input type="email" name="email" /><br />
-
-    <label for="phone">Celular</label>
-	<input type="text" name="phone" /><br />
-
-    <label for="address">Endereço</label>
-	<input type="text" name="address" /><br />
-
-	<label for="city">Cidade</label>
-	<input type="text" name="city" /><br />
-
-    <label for="state">Estado</label>
-	<input type="text" name="state" /><br />
-
-	<input type="submit" name="submit" value="Cadastrar" />
-
-</form>
+</body></html>
