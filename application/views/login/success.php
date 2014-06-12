@@ -7,7 +7,7 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<link href="<?=base_url('static/resources/bootstrap.min.css')?>" rel="stylesheet">
-		<title>Cadastro</title>
+		<title>Login</title>
   	</head>
 
 	<body>
@@ -20,8 +20,8 @@
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-        <li class="active"><a href="<?=site_url("signup")?>">CADASTRO</a></li>
-        <li><a href="<?=site_url("login")?>">LOGIN</a></li>
+        <li><a href="<?=site_url("signup")?>">CADASTRO</a></li>
+        <li class="active"><a href="<?=site_url("login")?>">LOGIN</a></li>
         </ul>
       </div>
       </div>
@@ -33,11 +33,11 @@
 			
 			<div class="panel panel-success">
 			  <div class="panel-heading">
-				CADASTRADO COM SUCESSO
+				SEJA BEM-VINDO
 			  </div>
 			  <div class="panel-body">
-				<p style='text-align: justify'> Usuário cadastro com sucesso! 
-        		<p align="center"> <a class='btn btn-primary' href='<?=site_url('login')?>'> Login </a>
+				<p style='text-align: justify'> Login efetuado com sucesso! 
+        		<p align="center"> <a class='btn btn-primary' href='<?=site_url('')?>'> OK </a>
 			  </div>
 			</div>
 			

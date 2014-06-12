@@ -5,10 +5,11 @@ class Signup extends CI_Controller {
     public function __construct() 
     {
 		parent::__construct();
-        $this->load->model('signup_model');
+        $this->load->model('user_model');
         $this->load->helper('security');
         $this->load->helper('url');
     }
+    
 	public function index()
 	{
         $this->load->view('signup/new');
@@ -28,7 +29,7 @@ class Signup extends CI_Controller {
             'city' => $this->input->post('city'),
             'state' => $this->input->post('state')
         );
-        $this->signup_model->set_new_user($data);
+        $this->user_model->set_new_user($data);
         redirect('signup/success');
         
     }

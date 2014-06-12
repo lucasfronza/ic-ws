@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?=base_url('static/resources/bootstrap.min.css')?>" rel="stylesheet">
 	  <title>Cadastro</title>
   </head>
 
@@ -26,7 +26,7 @@
     </div>
 	
 	<div class="row">
-		<div class="col-md-offset-2 col-md-8">
+		<div class="col-md-offset-3 col-md-6">
 		
 		<div class="panel panel-default">
 		  <div class="panel-heading">
@@ -117,7 +117,7 @@
         
         <hr>
 			  <div class="form-group">
-				  <div class="col-sm-offset-8 col-sm-4">
+				  <div class="col-sm-offset-2 col-sm-3">
 				    <button type="submit" class="btn btn-primary">Cadastrar</button>
 				  </div>
 			  </div>

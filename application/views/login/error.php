@@ -7,37 +7,37 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<link href="<?=base_url('static/resources/bootstrap.min.css')?>" rel="stylesheet">
-		<title>Cadastro</title>
+		<title>Login</title>
   	</head>
 
 	<body>
 	
 
 		<div class="navbar navbar-inverse" role="navigation">
-      <div class="container">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="<?=site_url()?>">Menu</a>
-      </div>
-      <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-        <li class="active"><a href="<?=site_url("signup")?>">CADASTRO</a></li>
-        <li><a href="<?=site_url("login")?>">LOGIN</a></li>
-        </ul>
-      </div>
-      </div>
-    </div>
+          <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="<?=site_url()?>">Menu</a>
+          </div>
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+            <li><a href="<?=site_url("signup")?>">CADASTRO</a></li>
+            <li class="active"><a href="<?=site_url("login")?>">LOGIN</a></li>
+            </ul>
+          </div>
+          </div>
+        </div>
 		
 		
 		<div class="row">
 			<div class="col-md-offset-4 col-md-4">
 			
-			<div class="panel panel-success">
+			<div class="panel panel-danger">
 			  <div class="panel-heading">
-				CADASTRADO COM SUCESSO
+				ERRO
 			  </div>
 			  <div class="panel-body">
-				<p style='text-align: justify'> Usuário cadastro com sucesso! 
-        		<p align="center"> <a class='btn btn-primary' href='<?=site_url('login')?>'> Login </a>
+				<p style='text-align: justify'> <?=$message?> 
+        		<p align="center"> <a class='btn btn-primary' href='<?=site_url('login/')?>'> Voltar </a>
 			  </div>
 			</div>
 			
@@ -47,5 +47,6 @@
 		<script src="<?=base_url('static/resources/jquery.min.js')?>"></script>
     	<script src="<?=base_url('static/resources/bootstrap.min.js')?>"></script>
     	
+  
 	</body>
 </html>
