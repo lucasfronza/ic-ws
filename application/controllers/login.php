@@ -91,9 +91,6 @@ class Login extends CI_Controller {
 
             $this->user_model->updatePassword($email, do_hash($result));
             
-            echo $result;
-            echo $result;
-            
             $this->email->from('lbfronza@gmail.com', 'Lucas Fronza');
             $this->email->to($email);
 
