@@ -7,6 +7,7 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<link href="<?=base_url('static/resources/bootstrap.min.css')?>" rel="stylesheet">
+        <link rel="shortcut icon" href="<?=base_url('static/resources/book.ico')?>" type="image/x-icon" />
 		<title><?=$title?></title>
   	</head>
 
