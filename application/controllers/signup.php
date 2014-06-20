@@ -12,6 +12,9 @@ class Signup extends CI_Controller {
     
 	public function index()
 	{
+        $header_menu['title'] = 'CADASTRO';
+        $header_menu['menu'] = 'CADASTRO';
+        $this->load->view('main/header_menu', $header_menu);
         $this->load->view('signup/new');
 	}
     
@@ -36,6 +39,9 @@ class Signup extends CI_Controller {
     
     public function success()
     {
+        $header_menu['title'] = 'CADASTRO';
+        $header_menu['menu'] = 'CADASTRO';
+        $this->load->view('main/header_menu', $header_menu);
         $this->load->view('signup/success');
     }
 }

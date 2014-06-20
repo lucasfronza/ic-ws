@@ -13,6 +13,9 @@ class Login extends CI_Controller {
     
 	public function index()
 	{
+        $header_menu['title'] = 'LOGIN';
+        $header_menu['menu'] = 'LOGIN';
+        $this->load->view('main/header_menu', $header_menu);
         $this->load->view('login/form');
 	}
     
@@ -40,18 +43,26 @@ class Login extends CI_Controller {
         } else {
             $data['message'] = 'Senha inválida!';   
         }
+        $header_menu['title'] = 'LOGIN';
+        $header_menu['menu'] = 'LOGIN';
+        $this->load->view('main/header_menu', $header_menu);
         $this->load->view('login/error', $data);
         
     }
     
     public function success()
     {
-        
+        $header_menu['title'] = 'LOGIN';
+        $header_menu['menu'] = 'LOGIN';
+        $this->load->view('main/header_menu', $header_menu);
         $this->load->view('login/success');
     }
     
     public function password_recovery()
     {
+        $header_menu['title'] = 'LOGIN';
+        $header_menu['menu'] = 'LOGIN';
+        $this->load->view('main/header_menu', $header_menu);
         $this->load->view('login/recovery');
     }
     
@@ -99,11 +110,17 @@ class Login extends CI_Controller {
 
             if($this->email->send())
             {
+                $header_menu['title'] = 'LOGIN';
+                $header_menu['menu'] = 'LOGIN';
+                $this->load->view('main/header_menu', $header_menu);
                 $data['email'] = $email;
                 $this->load->view('login/reset_success', $data);
             }
             else
             {
+                $header_menu['title'] = 'LOGIN';
+                $header_menu['menu'] = 'LOGIN';
+                $this->load->view('main/header_menu', $header_menu);
                 $data['message'] = 'Erro ao recuperar senha!';
                 $this->load->view('login/error', $data);
             }

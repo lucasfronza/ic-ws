@@ -1,29 +1,3 @@
-<?php $this->load->helper('url'); ?>
-<!DOCTYPE html>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link href="<?=base_url('static/resources/bootstrap.min.css')?>" rel="stylesheet">
-	  <title>Cadastro</title>
-  </head>
-
-  <body>
-	
-    <div class="navbar navbar-inverse" role="navigation">
-      <div class="container">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="<?=site_url()?>">Menu</a>
-      </div>
-      <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-        <li class="active"><a href="<?=site_url("signup")?>">CADASTRO</a></li>
-        <li><a href="<?=site_url("login")?>">LOGIN</a></li>
-        </ul>
-      </div>
-      </div>
-    </div>
 	
 	<div class="row">
 		<div class="col-md-offset-3 col-md-6">
