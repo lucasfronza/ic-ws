@@ -34,12 +34,15 @@
 		  </div>
 		  <div class="panel-body">
 			
-			<form action="<?=site_url('login/authenticate')?>" method="post" class="form-horizontal" role="form" id="form-signup">
+			<form action="<?=site_url('login/authenticate')?>" method="post" class="form-horizontal" role="form" id="form-login" onsubmit="return validate_login();">
 			  
         <div class="form-group" id="groupEmail">
             <label for="email" class="col-sm-2 control-label">Email</label>
             <div class="col-sm-5">
                 <input type="text" class="form-control" id="email" name="email">
+            </div>
+            <div class="col-sm-4">
+                <span id="errorEmail" class="help-block"></span>
             </div>
         </div>
                 
@@ -66,6 +69,7 @@
 		
     <script src="<?=base_url('static/resources/jquery.min.js')?>"></script>
     <script src="<?=base_url('static/resources/bootstrap.min.js')?>"></script>
+    <script src="<?=base_url('static/resources/validation.js')?>"></script>
   
 
 </body></html>
