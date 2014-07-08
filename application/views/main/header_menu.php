@@ -13,7 +13,7 @@
 
     <body>
 
-        <div class="navbar navbar-inverse" role="navigation">
+        <div class="navbar navbar-default" role="navigation">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu-navbar-collapse">
@@ -31,6 +31,9 @@
                         </li>
                         <li <?php if($menu == 'LOGIN') echo 'class="active"'; ?>>
                             <a href="<?=site_url("login")?>">LOGIN</a>
+                        </li>
+                        <li <?php if($menu == 'PERFIL') echo 'class="active"'; ?>>
+                            <a href="<?=site_url("profile")?>">PERFIL</a>
                         </li>
                     </ul>
                 </div>
