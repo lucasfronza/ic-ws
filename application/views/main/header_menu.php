@@ -26,15 +26,26 @@
                 </div>
                 <div class="collapse navbar-collapse" id="menu-navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li <?php if($menu == 'CADASTRO') echo 'class="active"'; ?>>
-                            <a href="<?=site_url("signup")?>">CADASTRO</a>
-                        </li>
-                        <li <?php if($menu == 'LOGIN') echo 'class="active"'; ?>>
-                            <a href="<?=site_url("login")?>">LOGIN</a>
-                        </li>
-                        <li <?php if($menu == 'PERFIL') echo 'class="active"'; ?>>
-                            <a href="<?=site_url("profile")?>">PERFIL</a>
-                        </li>
+                        <?php if ($this->session->userdata('logged_in')): ?>
+
+                            <li <?php if($menu == 'LOGOUT') echo 'class="active"'; ?>>
+                                <a href="<?=site_url("login/end")?>">LOGOUT</a>
+                            </li>
+                        <?php else: ?>
+                            <li <?php if($menu == 'CADASTRO') echo 'class="active"'; ?>>
+                                <a href="<?=site_url("signup")?>">CADASTRO</a>
+                            </li>
+                        
+                            <li <?php if($menu == 'LOGIN') echo 'class="active"'; ?>>
+                                <a href="<?=site_url("login")?>">LOGIN</a>
+                            </li>   
+                        <?php endif; ?>
+                        <?php if ($this->session->userdata('logged_in')): ?>
+                            <li <?php if($menu == 'PERFIL') echo 'class="active"'; ?>>
+                                <a href="<?=site_url("profile")?>">PERFIL</a>
+                            </li>
+                        <?php endif; ?>
+                        
                     </ul>
                 </div>
             </div>

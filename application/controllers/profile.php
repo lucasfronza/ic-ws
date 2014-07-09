@@ -15,49 +15,40 @@ class Profile extends CI_Controller {
         $header_menu['title'] = 'PERFIL';
         $header_menu['menu'] = 'PERFIL';
         $this->load->view('main/header_menu', $header_menu);
-        //pegar o usuario da session, ler as informacoes do banco de dados
-        //e passar para a view
-        $data['user'] = $this->user_model->getByEmail("kkk");
+        
+        $data['user'] = $this->user_model->getById($this->session->userdata('id'));
         $this->load->view('profile/index', $data);
 	}
     
-    public function authenticate()
+    public function edit()
     {
-        
-        $email = $this->input->post('email');
-        $password = do_hash($this->input->post('password'));
-        $query = $this->user_model->getByEmail($email);
-        
-        if(empty($query)) {
-            redirect('login/error/email_not_found');
-        } else if($query->password == $password) {
-            redirect('login/success');
-        } else {
-            redirect('login/error/wrong_pass');
-        }
-    }
-    
-    public function error()
-    {
-        $uri = $this->uri->segment(3, 0);
-        if($uri == 'email_not_found') {
-            $data['message'] = 'Email não encontrado!';
-        } else {
-            $data['message'] = 'Senha inválida!';   
-        }
-        $header_menu['title'] = 'LOGIN';
-        $header_menu['menu'] = 'LOGIN';
+        $header_menu['title'] = 'PERFIL';
+        $header_menu['menu'] = 'PERFIL';
         $this->load->view('main/header_menu', $header_menu);
-        $this->load->view('login/error', $data);
         
+        $data['user'] = $this->user_model->getById($this->session->userdata('id'));
+        $this->load->view('profile/edit', $data);
     }
-    
-    public function success()
+        
+    public function update()
     {
-        $header_menu['title'] = 'LOGIN';
-        $header_menu['menu'] = 'LOGIN';
-        $this->load->view('main/header_menu', $header_menu);
-        $this->load->view('login/success');
+        $data = array(
+            'name' => $this->input->post('name'),
+            'surname' => $this->input->post('surname'),
+            'email' => $this->input->post('email'),
+            'phone' => $this->input->post('phone'),
+            'address' => $this->input->post('address'),
+            'city' => $this->input->post('city'),
+            'state' => $this->input->post('state')
+        );
+        
+        if( !empty($this->input->post('password')) )
+        {
+            $data['password'] = do_hash($this->input->post('password'));
+        }
+        
+        $this->user_model->updateUser($this->session->userdata('id'), $data);
+        redirect('profile/index');
     }
     
     public function password_recovery()

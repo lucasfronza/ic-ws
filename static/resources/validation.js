@@ -51,6 +51,59 @@ function validate_signup()
 	return !erro;
 }
 
+function validate_profileupdate()
+{
+	var erro = false;
+    
+	var name = $("#form-profileupdate input[name=name]").val();
+	$("#form-disciplina #groupName").removeClass('has-error');
+	$("#form-disciplina #errorName").html('');
+    
+    var pass1 = $("#form-profileupdate input[name=password]").val();
+    $("#form-profileupdate #groupPassword").removeClass('has-error');
+	$("#form-profileupdate #errorPassword").html('');
+    
+    var pass2 = $("#form-profileupdate input[name=passwordChecker]").val();
+    $("#form-profileupdate #groupPasswordChecker").removeClass('has-error');
+	$("#form-profileupdate #errorPasswordChecker").html('');
+    
+    var email = $("#form-profileupdate input[name=email]").val();
+	$("#form-profileupdate #groupEmail").removeClass('has-error');
+	$("#form-profileupdate #errorEmail").html('');
+	
+    if(name.length == 0)
+	{
+		$("#form-profileupdate #groupName").addClass('has-error');
+		$("#form-profileupdate #errorName").html('Campo Obrigat&oacute;rio.');			
+		erro = true;
+	}
+    
+    if(pass1.length >=1 && pass1.length <= 7)
+	{
+		$("#form-profileupdate #groupPassword").addClass('has-error');
+		$("#form-profileupdate #errorPassword").html('No mínimo 8 dígitos.');			
+		erro = true;
+	}
+    
+    if(pass1 != pass2)
+	{
+		$("#form-profileupdate #groupPassword").addClass('has-error');
+        
+        $("#form-profileupdate #groupPasswordChecker").addClass('has-error');
+		$("#form-profileupdate #errorPasswordChecker").html('Senhas não conferem.');
+		erro = true;
+	}
+    
+    if(email.length == 0)
+	{
+		$("#form-profileupdate #groupEmail").addClass('has-error');
+		$("#form-profileupdate #errorEmail").html('Campo Obrigat&oacute;rio.');			
+		erro = true;
+	}
+    
+	return !erro;
+}
+
 function validate_password()
 {
 	var erro = false;
@@ -76,6 +129,37 @@ function validate_password()
         
         $("#form-signup #groupPasswordChecker").addClass('has-error');
 		$("#form-signup #errorPasswordChecker").html('Senhas não conferem.');
+		erro = true;
+	}
+    
+	return !erro;
+}
+
+function validate_password_edit()
+{
+	var erro = false;
+    
+    var pass1 = $("#form-profileupdate input[name=password]").val();
+    $("#form-profileupdate #groupPassword").removeClass('has-error');
+	$("#form-profileupdate #errorPassword").html('');
+    
+    var pass2 = $("#form-profileupdate input[name=passwordChecker]").val();
+    $("#form-profileupdate #groupPasswordChecker").removeClass('has-error');
+	$("#form-profileupdate #errorPasswordChecker").html('');
+    
+    if(pass1.length >=1 && pass1.length <= 7)
+	{
+		$("#form-profileupdate #groupPassword").addClass('has-error');
+		$("#form-profileupdate #errorPassword").html('No mínimo 8 dígitos.');			
+		erro = true;
+	}
+    
+    if(pass1 != pass2)
+	{
+		$("#form-profileupdate #groupPassword").addClass('has-error');
+        
+        $("#form-profileupdate #groupPasswordChecker").addClass('has-error');
+		$("#form-profileupdate #errorPasswordChecker").html('Senhas não conferem.');
 		erro = true;
 	}
     

@@ -29,11 +29,29 @@ class Login extends CI_Controller {
         if(empty($query)) {
             redirect('login/error/email_not_found');
         } else if($query->password == $password) {
+            $user = array(
+				'logged_in' => TRUE,
+				'id'        => $query->id,
+				'email'     => $query->email,
+				'name'      => $query->name,
+				'type'      => $query->type
+			);
+			$this->session->set_userdata($user);
+            
             redirect('login/success');
         } else {
             redirect('login/error/wrong_pass');
         }
     }
+    
+    public function end()
+	{
+		$this->session->sess_destroy();
+		$header_menu['title'] = 'LOGOUT';
+		$header_menu['menu'] = 'LOGOUT';
+		$this->load->view('main/header_menu', $header_menu);
+		$this->load->view('login/end');
+	}
     
     public function error()
     {

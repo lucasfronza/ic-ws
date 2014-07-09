@@ -5,8 +5,7 @@
 			  <div class="panel-heading">
 				MINHA CONTA
                   <div>
-                    <a href="<?=site_url('profile/')?>" class="btn btn-default" >Alterar senha</a>
-                    <a href="<?=site_url('profile/')?>" class="btn btn-default" >Alterar dados</a>
+                    <a href="<?=site_url('profile/edit')?>" class="btn btn-default" >Alterar dados</a>
                   </div>
 			  </div>
 			  <div class="panel-body">
