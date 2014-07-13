@@ -1,8 +1,14 @@
 TODO
 -----------
+- Turma: busca dos alunos por nome e sobrenome
+- Turma: crud para adicionar o aluno
+- Turma: listar apenas alunos nao participantes ou nao permitir adicionar duas vezes o mesmo
+- Turma: botao para visualizar participantes
 - Perfil: Foto
 - Turma
 - Cadastro: Verificar se email ja existe
+- Validação Turma
+- Turma: buscar as turmas de acordo com o usuário logado
 
 DONE
 -----------

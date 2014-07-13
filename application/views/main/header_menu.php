@@ -6,7 +6,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<link href="<?=base_url('static/resources/bootstrap.min.css')?>" rel="stylesheet">
+		<!--<link href="<?=base_url('static/resources/bootstrap.min.css')?>" rel="stylesheet">-->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="shortcut icon" href="<?=base_url('static/resources/book.ico')?>" type="image/x-icon" />
 		<title><?=$title?></title>
   	</head>
@@ -43,6 +44,9 @@
                         <?php if ($this->session->userdata('logged_in')): ?>
                             <li <?php if($menu == 'PERFIL') echo 'class="active"'; ?>>
                                 <a href="<?=site_url("profile")?>">PERFIL</a>
+                            </li>
+                            <li <?php if($menu == 'TURMAS') echo 'class="active"'; ?>>
+                                <a href="<?=site_url("course")?>">TURMAS</a>
                             </li>
                         <?php endif; ?>
                         
