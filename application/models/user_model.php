@@ -32,4 +32,24 @@ class User_model extends CI_Model {
         return $this->db->where('email', $email)->update('user', array('password' => $password));
     }
     
+    public function getByNameSurname($name, $surname)
+    {
+        if(empty($name) && !empty($surname))
+        {
+            $this->db->like('surname', $surname);
+        }
+        else if(!empty($name) && empty($surname))
+        {
+            $this->db->like('name', $name);
+        }
+        else if(!empty($name) && !empty($surname))
+        {
+            $this->db->like('surname', $surname);
+            $this->db->like('name', $name);
+        }
+        
+        return $this->db->get('user')->result();
+        
+    }
+    
 }

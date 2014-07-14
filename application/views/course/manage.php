@@ -5,7 +5,7 @@
 			  <div class="panel-heading">
 				TURMA
                   <div>
-                    <a href="<?=site_url('course/edit')?>" class="btn btn-default" >Alterar dados</a>
+                    <a href="<?=site_url('course/edit/'.$course->id)?>" class="btn btn-default" >Alterar dados</a>
                   </div>
 			  </div>
 			  <div class="panel-body">
@@ -46,7 +46,7 @@
 				ADICIONAR PARTICIPANTES
 			  </div>
 			  <div class="panel-body">
-                  <form action="<?=site_url('course/insert')?>" method="post" class="form-horizontal" role="form" id="form-course">
+                  <form action="<?=site_url('course/users/'.$course->id)?>" method="post" class="form-horizontal" role="form" id="form-course">
 			  
                     <div class="form-group" id="groupName">
                         <label for="name" class="col-sm-4 control-label">Nome</label>

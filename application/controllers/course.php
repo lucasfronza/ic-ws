@@ -5,6 +5,7 @@ class Course extends CI_Controller {
     {
 		parent::__construct();
         $this->load->model('course_model');
+        $this->load->model('user_model');
 	}
     
     public function index() 
@@ -49,52 +50,79 @@ class Course extends CI_Controller {
         
         $obj = new stdClass();
         $obj->idCourse = $this->course_model->getId($course);
-        $obj->idUser = 20; //TODO salvar o id do usuario logado
+        $obj->idUser = $this->session->userdata('id');
         $this->course_model->linkUser($obj);
         redirect('course');
     }
     
-    /*public function gerenciamento()
+    public function edit($id) 
     {
-        $idCurso = $this->uri->segment(3, 0);
-        $inicio = $this->uri->segment(4, 0);
-
-        $config['base_url'] = site_url('curso/gerenciamento/'.$idCurso);
-        $config['total_rows'] = $this->curso_model->countDisciplinas($idCurso);
-        $config['per_page'] = '5'; 
-        $config['uri_segment'] = 4;
-        $this->pagination->initialize($config);
-
-        $dados["paginacao"] = $this->pagination->create_links();
-        $dados['curso'] = $this->curso_model->get($idCurso);
-        $dados['disciplinas'] = $this->curso_model->getDisciplinas($idCurso, $inicio, 5);
-
-        $this->load->view('curso/gerenciamento', $dados);
+        $header_menu['title'] = 'TURMAS';
+        $header_menu['menu'] = 'TURMAS';
+        $data['course'] = $this->course_model->getById($id);
+        $this->load->view('main/header_menu', $header_menu);
+        $this->load->view('course/edit', $data);
     }
-
-    public function retirar() 
+    
+    public function update() 
     {
-        $idCurso = $this->uri->segment(3, 0);
-        $idDisciplina = $this->uri->segment(4, 0);
-        $this->curso_model->retirarDisciplina($idCurso, $idDisciplina);
-        redirect('curso/gerenciamento/'.$idCurso);
+        $id = $this->input->post('id');
+        $course = new stdClass();
+        $course->name = $this->input->post('name');
+        $course->code = $this->input->post('code');
+        $course->credits = $this->input->post('credits');
+        $course->time = $this->input->post('time');
+        $course->description = $this->input->post('description');
+        $this->course_model->update($id, $course);
+        
+        redirect('course/manage/'.$id);
     }
-
-    public function filiacao() 
+    
+    public function users($idCourse) 
     {
-        $this->load->model('disciplina_model');
-        $dados["disciplinas"] = $this->disciplina_model->listAll();
-        $this->load->view('curso/filiacao', $dados);
+        $data['idCourse'] = $idCourse;
+        
+        $name = $this->input->post('name');
+        $surname = $this->input->post('surname');
+        $data['search'] = $this->user_model->getByNameSurname($name, $surname);
+        
+        $data['linkedUsers'] = $this->course_model->getLinkedUsers($idCourse);
+        
+        $header_menu['title'] = 'TURMAS';
+        $header_menu['menu'] = 'TURMAS';
+        $this->load->view('main/header_menu', $header_menu);
+        $this->load->view('course/users', $data);
     }
-
-    public function filiar()
+    
+    public function addUser($idCourse, $idUser) 
     {
-        $filiacao = new stdClass();
-        $filiacao->idCurso = $this->uri->segment(3, 0);
-        $filiacao->idDisciplina = $this->input->post('disciplina');
-        $this->curso_model->filiar($filiacao);
-        redirect('curso/gerenciamento/'.$filiacao->idCurso);
-    }*/
+        $obj = new stdClass();
+        $obj->idCourse = $idCourse;
+        $obj->idUser = $idUser;
+        $this->course_model->linkUser($obj);
+        
+        $data['idCourse'] = $idCourse;
+        //TODO apos inserir, voltar para a pagina
+        //com a mesma busca anterior
+        $data['linkedUsers'] = $this->course_model->getLinkedUsers($idCourse);
+        
+        redirect('course/users/'.$idCourse);
+    }
+    
+    public function removeUser($idCourse, $idUser) 
+    {
+        $obj = new stdClass();
+        $obj->idCourse = $idCourse;
+        $obj->idUser = $idUser;
+        $this->course_model->unlinkUser($obj);
+        
+        $data['idCourse'] = $idCourse;
+        //TODO apos remover, voltar para a pagina
+        //com a mesma busca anterior
+        $data['linkedUsers'] = $this->course_model->getLinkedUsers($idCourse);
+        
+        redirect('course/users/'.$idCourse);
+    }
 
 }
 ?>
