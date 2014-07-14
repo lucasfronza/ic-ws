@@ -78,13 +78,32 @@ class Course extends CI_Controller {
         redirect('course/manage/'.$id);
     }
     
-    public function users($idCourse) 
+    public function remove($id) 
+    {
+        $this->course_model->delete($id);
+        
+        redirect('course');
+    }
+    
+    public function usersSearch($idCourse) 
     {
         $data['idCourse'] = $idCourse;
         
         $name = $this->input->post('name');
         $surname = $this->input->post('surname');
         $data['search'] = $this->user_model->getByNameSurname($name, $surname);
+        
+        $data['linkedUsers'] = $this->course_model->getLinkedUsers($idCourse);
+        
+        $header_menu['title'] = 'TURMAS';
+        $header_menu['menu'] = 'TURMAS';
+        $this->load->view('main/header_menu', $header_menu);
+        $this->load->view('course/users_search', $data);
+    }
+    
+    public function users($idCourse) 
+    {
+        $data['idCourse'] = $idCourse;
         
         $data['linkedUsers'] = $this->course_model->getLinkedUsers($idCourse);
         

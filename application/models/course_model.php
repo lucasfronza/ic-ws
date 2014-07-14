@@ -17,6 +17,11 @@ class Course_model extends CI_Model {
         return $this->db->where('id', $id)->update('course', $data);
 	}
     
+    public function delete($id)
+    {
+        return $this->db->where('id', $id)->delete('course');
+    }
+    
     public function linkUser($data)
 	{
 		return $this->db->insert('courseusers', $data);

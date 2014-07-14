@@ -6,6 +6,7 @@
 				TURMA
                   <div>
                     <a href="<?=site_url('course/edit/'.$course->id)?>" class="btn btn-default" >Alterar dados</a>
+                    <a href="<?=site_url('course/remove/'.$course->id)?>" class="btn btn-danger" >Excluir turma</a>
                   </div>
 			  </div>
 			  <div class="panel-body">
@@ -46,7 +47,7 @@
 				ADICIONAR PARTICIPANTES
 			  </div>
 			  <div class="panel-body">
-                  <form action="<?=site_url('course/users/'.$course->id)?>" method="post" class="form-horizontal" role="form" id="form-course">
+                  <form action="<?=site_url('course/usersSearch/'.$course->id)?>" method="post" class="form-horizontal" role="form" id="form-course">
 			  
                     <div class="form-group" id="groupName">
                         <label for="name" class="col-sm-4 control-label">Nome</label>
@@ -66,6 +67,7 @@
                     <div class="form-group">
                       <div class="col-sm-offset-2 col-sm-3">
                         <button type="submit" class="btn btn-primary">Buscar</button>
+                        <a href="<?=site_url('course/users/'.$course->id)?>" class="btn btn-default">Visualizar todos</a>
                       </div>
                     </div>
 			      </form>
