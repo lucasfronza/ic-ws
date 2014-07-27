@@ -34,6 +34,7 @@ class Login extends CI_Controller {
 				'id'        => $query->id,
 				'email'     => $query->email,
 				'name'      => $query->name,
+				'surname'   => $query->surname,
 				'type'      => $query->type
 			);
 			$this->session->set_userdata($user);

@@ -62,4 +62,13 @@ class Course_model extends CI_Model {
                                               ))->get('course')->row()->id;
 	}
     
+    public function insertFile($data)
+    {
+        return $this->db->insert('coursefiles', $data);
+    }
+    
+    public function getFiles($idCourse)
+	{
+		return $this->db->where('idCourse', $idCourse)->get('coursefiles')->result();
+	}
 }
