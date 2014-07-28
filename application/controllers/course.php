@@ -80,6 +80,16 @@ class Course extends CI_Controller {
     
     public function remove($id)
     {
+        $header_menu['title'] = 'TURMAS';
+        $header_menu['menu'] = 'TURMAS';
+        $this->load->view('main/header_menu', $header_menu);
+        $data['course'] = $this->course_model->getById($id);
+        $this->load->view('course/remove_confirmation', $data);
+        
+    }
+    
+    public function delete($id)
+    {
         $this->course_model->delete($id);
         
         redirect('course');

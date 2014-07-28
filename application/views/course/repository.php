@@ -6,6 +6,8 @@
 			<div class="panel panel-default">
 			  <div class="panel-heading">
 				REPOSITÓRIO
+                <a href="<?=site_url('course/manage/'.$idCourse)?>" class="btn btn-default col-md-offset-7">Voltar</a>
+
 			  </div>
               <div class="panel-body">
                   <form action="<?=site_url('course/uploadFile/'.$idCourse)?>" method="post" enctype="multipart/form-data" class="form-horizontal" role="form" id="form-upload">

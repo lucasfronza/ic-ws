@@ -6,6 +6,7 @@
             <div class="panel panel-default">
 			  <div class="panel-heading">
 				PARTICIPANTES
+                <a href="<?=site_url('course/manage/'.$idCourse)?>" class="btn btn-default col-md-offset-7">Voltar</a>
 			  </div>
 			  <div class="panel-body">
 				

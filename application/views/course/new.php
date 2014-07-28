@@ -50,6 +50,7 @@
 			  <div class="form-group">
 				  <div class="col-sm-offset-2 col-sm-3">
 				    <button type="submit" class="btn btn-primary">Criar</button>
+                    <a href="<?=site_url('course')?>" class="btn btn-default">Voltar</a>
 				  </div>
 			  </div>
 			</form>
