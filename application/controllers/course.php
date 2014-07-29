@@ -172,7 +172,7 @@ class Course extends CI_Controller {
         }
         
         $config['upload_path'] = './uploads/'.$idCourse.'/';
-        $config['allowed_types'] = 'gif|jpg|png|txt|pdf|rar|zip';
+        $config['allowed_types'] = 'gif|jpg|png|txt|pdf|rar|zip|doc|docx|odt|xls|xlsx|ppt|pptx|sldx';
         
 		$this->load->library('upload', $config);
 
