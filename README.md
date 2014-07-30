@@ -4,16 +4,16 @@ TODO
 - Perfil: Foto
 - Cadastro: Verificar se email ja existe
 - Validação Turma
-- Turma: Confirmar exclusão de turma
 - Turma: buscar as turmas de acordo com o usuário logado
 - Turma: Submenu com todas as funções da turma
-- Turma: Adicionar todas as extensões de arquivos que podem ser upadas
 - Turma: Formatação da Data no Modificado do repositório
-- Geral: Botão Voltar para navegação nas páginas
 - Geral: Separar o arquivo de validação em cada formulário
 
 DONE
 -----------
+- Geral: Botão Voltar para navegação nas páginas
+- Turma: Adicionar todas as extensões de arquivos que podem ser upadas
+- Turma: Confirmar exclusão de turma
 - Turma: repositório
 - Turma: botao para visualizar participantes
 - Turma: exclusão de turmas
