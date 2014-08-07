@@ -66,7 +66,15 @@
                 <input type="text" class="form-control" id="phone" name="phone">
             </div>
         </div>
-                
+           
+        <div class="form-group" id="groupCEP">
+            <label for="CEP" class="col-sm-2 control-label">CEP</label>
+            <div class="col-sm-5">
+                <input class="form-control" id="CEP" name="CEP" onblur="consultacep(this.value)">
+            </div>
+            <i class="fa fa-spinner fa-spin" style="display:none" id="spinner"></i>
+        </div>
+
         <div class="form-group" id="groupAddress">
             <label for="address" class="col-sm-2 control-label">Endereço</label>
             <div class="col-sm-5">
@@ -105,6 +113,7 @@
     <script src="<?=base_url('static/resources/jquery.min.js')?>"></script>
     <script src="<?=base_url('static/resources/bootstrap.min.js')?>"></script>
     <script src="<?=base_url('static/resources/validation.js')?>"></script>
+    <script src="<?=base_url('static/resources/cep.js')?>"></script>
   
 
 </body></html>
