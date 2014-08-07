@@ -30,7 +30,8 @@ class Signup extends CI_Controller {
             'phone' => $this->input->post('phone'),
             'address' => $this->input->post('address'),
             'city' => $this->input->post('city'),
-            'state' => $this->input->post('state')
+            'state' => $this->input->post('state'),
+            'facebookEmail' => $this->input->post('facebookEmail')
         );
         $this->user_model->set_new_user($data);
         redirect('signup/success');

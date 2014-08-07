@@ -17,6 +17,11 @@ class User_model extends CI_Model {
 		return $this->db->where('email', $email)->get('user')->row();
 	}
     
+    public function getByFacebookEmail($email)
+    {
+        return $this->db->where('facebookEmail', $email)->get('user')->row();
+    }
+
     public function getById($id)
 	{
 		return $this->db->where('id', $id)->get('user')->row();

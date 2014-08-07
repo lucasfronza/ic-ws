@@ -8,6 +8,8 @@
 		<meta name="author" content="">
 		<!--<link href="<?=base_url('static/resources/bootstrap.min.css')?>" rel="stylesheet">-->
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="<?=base_url('static/resources/bootstrap-social.css')?>" rel="stylesheet">
         <link rel="shortcut icon" href="<?=base_url('static/resources/book.ico')?>" type="image/x-icon" />
 		<title><?=$title?></title>
   	</head>

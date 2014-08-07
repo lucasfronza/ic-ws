@@ -2,33 +2,34 @@ TODO
 -----------
 - Turma: listar apenas alunos nao participantes ou nao permitir adicionar duas vezes o mesmo
 - Perfil: Foto
-- Cadastro: Verificar se email ja existe
+- Cadastro: Verificar se email ja existe antes de submeter o formulário
 - Validação Turma
 - Turma: buscar as turmas de acordo com o usuário logado
 - Turma: Submenu com todas as funções da turma
 - Turma: Formatação da Data no Modificado do repositório
 - Geral: Separar o arquivo de validação em cada formulário
+- Cadastro: Pesquisa por CEP
 
 DONE
 -----------
-- Geral: Botão Voltar para navegação nas páginas
-- Turma: Adicionar todas as extensões de arquivos que podem ser upadas
-- Turma: Confirmar exclusão de turma
-- Turma: repositório
-- Turma: botao para visualizar participantes
-- Turma: exclusão de turmas
-- Turma: busca dos alunos por nome e sobrenome
-- Turma: crud para adicionar o aluno
-- Turma: crud com os alunos ja inseridos
-- Login: Session
-- Perfil: Alterar dados
-- Perfil: Alterar senha
-- Perfil: Visualizacao do usuario de acordo com a "session"
-- Perfil: visualizacao do perfil
-- Emails únicos
-- Campo "username" retirado
-- Interface Cadastro
-- Interface Login
-- No cadastro, verifica se os 2 campos senha correspondem
-- Login
-- Recuperação de senha
+- ~~Geral: Botão Voltar para navegação nas páginas~~
+- ~~Turma: Adicionar todas as extensões de arquivos que podem ser upadas~~
+- ~~Turma: Confirmar exclusão de turma~~
+- ~~Turma: repositório~~
+- ~~Turma: botao para visualizar participantes~~
+- ~~Turma: exclusão de turmas~~
+- ~~Turma: busca dos alunos por nome e sobrenome~~
+- ~~Turma: crud para adicionar o aluno~~
+- ~~Turma: crud com os alunos ja inseridos~~
+- ~~Login: Session~~
+- ~~Perfil: Alterar dados~~
+- ~~Perfil: Alterar senha~~
+- ~~Perfil: Visualizacao do usuario de acordo com a "session"~~
+- ~~Perfil: visualizacao do perfil~~
+- ~~Emails únicos~~
+- ~~Campo "username" retirado~~
+- ~~Interface Cadastro~~
+- ~~Interface Login~~
+- ~~No cadastro, verifica se os 2 campos senha correspondem~~
+- ~~Login~~
+- ~~Recuperação de senha~~

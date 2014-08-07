@@ -8,38 +8,133 @@ class Login extends CI_Controller {
 		parent::__construct();
         $this->load->model('user_model');
         $this->load->helper('security');
-        $this->load->helper('url');
     }
+    
     
 	public function index()
 	{
+        $this->load->library('facebook'); // Automatically picks appId and secret from config
+        // OR
+        // You can pass different one like this
+        //$this->load->library('facebook', array(
+        //    'appId' => 'APP_ID',
+        //    'secret' => 'SECRET',
+        //    ));
+
+        $user = $this->facebook->getUser();
+        
+        //print_r($user);
+        
+        if ($user) {
+            try {
+                $data['user_profile'] = $this->facebook->api('/me');
+                redirect('login/authenticate');
+            } catch (FacebookApiException $e) {
+                $user = null;
+            }
+        }else {
+            $this->facebook->destroySession();
+        }
+        
+        if ($user) {
+
+            //$data['logout_url'] = site_url('login/end_fb'); // Logs off application
+            // OR 
+            // Logs off FB!
+            // $data['logout_url'] = $this->facebook->getLogoutUrl();
+
+        } else {
+            $data['login_url'] = $this->facebook->getLoginUrl(array(
+                'redirect_uri' => site_url('login/authenticate'), 
+                'scope' => array('email') // permissions here
+            ));
+        }
+        //$this->load->view('login/login',$data);
+
         $header_menu['title'] = 'LOGIN';
         $header_menu['menu'] = 'LOGIN';
         $this->load->view('main/header_menu', $header_menu);
-        $this->load->view('login/form');
+        $this->load->view('login/form', $data);
 	}
     
     public function authenticate()
     {
+        $this->load->library('facebook');
+
+        $fb_user = $this->facebook->getUser();
         
+        if ($fb_user) {
+            try {
+                $data['user_profile'] = $this->facebook->api('/me');
+                //print_r($this->facebook->api('/me'));
+                $query = $this->user_model->getByFacebookEmail($data['user_profile']['email']);
+                if (!empty($query)) {//se o facebook ja esta linkado com uma conta
+                    $sess = array(
+                        'logged_in' => TRUE,
+                        'id'        => $query->id,
+                        'email'     => $query->email,
+                        'name'      => $query->name,
+                        'surname'   => $query->surname,
+                        'type'      => $query->type
+                    );
+                    $this->session->set_userdata($sess);
+                    redirect('profile');
+                } else {
+                    
+                    $header_menu['title'] = 'LOGIN';
+                    $header_menu['menu'] = 'LOGIN';
+                    $this->load->view('main/header_menu', $header_menu);
+                    $this->load->view('login/link', $data);//escolhe entre linkar conta ou criar cadastro
+                }
+
+            } catch (FacebookApiException $e) {
+                $fb_user = null;
+            }
+        } else {
+            $this->facebook->destroySession();
+        
+            $email = $this->input->post('email');
+            $password = do_hash($this->input->post('password'));
+            $query = $this->user_model->getByEmail($email);
+            
+            if(empty($query)) {
+                redirect('login/error/email_not_found');
+            } else if($query->password == $password) {
+                $sess = array(
+        			'logged_in' => TRUE,
+        			'id'        => $query->id,
+        			'email'     => $query->email,
+        			'name'      => $query->name,
+        			'surname'   => $query->surname,
+        			'type'      => $query->type
+        		);
+        		$this->session->set_userdata($sess);
+                
+                redirect('login/success');
+            } else {
+                redirect('login/error/wrong_pass');
+            }
+        }
+    }
+
+    public function fb_link()
+    {
         $email = $this->input->post('email');
         $password = do_hash($this->input->post('password'));
         $query = $this->user_model->getByEmail($email);
-        
+
         if(empty($query)) {
             redirect('login/error/email_not_found');
         } else if($query->password == $password) {
-            $user = array(
-				'logged_in' => TRUE,
-				'id'        => $query->id,
-				'email'     => $query->email,
-				'name'      => $query->name,
-				'surname'   => $query->surname,
-				'type'      => $query->type
-			);
-			$this->session->set_userdata($user);
-            
-            redirect('login/success');
+            $this->load->library('facebook');
+
+            $fb_user = $this->facebook->getUser();
+            $user_profile = $this->facebook->api('/me');
+
+            $query->facebookEmail = $user_profile['email'];
+            $this->user_model->updateUser($query->id, $query);
+
+            redirect('login/authenticate');
         } else {
             redirect('login/error/wrong_pass');
         }
@@ -47,26 +142,31 @@ class Login extends CI_Controller {
     
     public function end()
 	{
+        $this->load->library('facebook');
+
+        $this->facebook->destroySession();
+
 		$this->session->sess_destroy();
+
 		$header_menu['title'] = 'LOGOUT';
 		$header_menu['menu'] = 'LOGOUT';
 		$this->load->view('main/header_menu', $header_menu);
 		$this->load->view('login/end');
 	}
     
-    public function error()
+    public function error($uri)
     {
-        $uri = $this->uri->segment(3, 0);
         if($uri == 'email_not_found') {
             $data['message'] = 'Email não encontrado!';
-        } else {
+        } else if($uri == 'wrong_pass') {
             $data['message'] = 'Senha inválida!';   
+        } else {
+            $data['message'] = 'Erro!';
         }
         $header_menu['title'] = 'LOGIN';
         $header_menu['menu'] = 'LOGIN';
         $this->load->view('main/header_menu', $header_menu);
         $this->load->view('login/error', $data);
-        
     }
     
     public function success()
@@ -85,9 +185,12 @@ class Login extends CI_Controller {
         $this->load->view('login/recovery');
     }
     
-    public function password_reset()//gera uma senha aleatoria nova e manda no email
-	{                               //ou utilizar a API com JSON-RPC
-                                    //{"jsonrpc":"2.0","method":"generateStrings","params":{"apiKey":"00000000-0000-0000-0000-000000000000","n":1,"length":12,"characters":"!@#$%&*abcdefghijklmnopqrstuvwxyzQWERTYUIOPASDFGHJKLZXCVBNM0123456789","replacement":true},"id":15032}
+    public function password_reset() 
+	{                               
+        /*//gera uma senha aleatoria nova e manda no email
+        //ou utilizar a API com JSON-RPC
+        //{"jsonrpc":"2.0","method":"generateStrings","params":{"apiKey":"00000000-0000-0000-0000-000000000000","n":1,"length":12,"characters":"!@#$%&*abcdefghijklmnopqrstuvwxyzQWERTYUIOPASDFGHJKLZXCVBNM0123456789","replacement":true},"id":15032}
+        */
         //$this->load->helper('url');
         
         $email = $this->input->post('email');
