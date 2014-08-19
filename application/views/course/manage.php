@@ -15,6 +15,7 @@
                       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownTurma">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="<?=site_url('course/repo/'.$course->id)?>">Repositório</a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="<?=site_url('course/users/'.$course->id)?>">Participantes</a></li>
+                      	<li role="presentation"><a role="menuitem" tabindex="-1" href="<?=site_url('course/microblog/'.$course->id)?>">Microblog</a></li>
                       </ul>
                     </div>
                   </div>

@@ -6,6 +6,7 @@ class Course extends CI_Controller {
 		parent::__construct();
         $this->load->model('course_model');
         $this->load->model('user_model');
+        $this->load->model('microblog_model');
 	}
     
     public function index()
@@ -200,6 +201,28 @@ class Course extends CI_Controller {
             redirect('course/repo/'.$idCourse);
 		}
         
+    }
+
+    public function microblog($idCourse)
+    {
+        $data["messages"] = $this->microblog_model->get($idCourse);
+        $data["idCourse"] = $idCourse;
+
+        $header_menu['title'] = 'TURMAS';
+        $header_menu['menu'] = 'TURMAS';
+        $this->load->view('main/header_menu', $header_menu);
+        $this->load->view('course/microblog', $data);
+    }
+
+    public function microblog_insert()
+    {
+        $obj = new stdClass();
+        $obj->message = $this->input->post('message');
+        $obj->idCourse = $this->input->post('idCourse');
+        $obj->idUser = $this->session->userdata('id');
+        $this->microblog_model->insert($obj);
+        
+        redirect('course/microblog/'.$obj->idCourse);
     }
 
 }
