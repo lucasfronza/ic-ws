@@ -193,6 +193,8 @@ class Login extends CI_Controller {
         */
         //$this->load->helper('url');
         
+        require_once('application/config/gmail.php');
+
         $email = $this->input->post('email');
         $query = $this->user_model->getByEmail($email);
         
