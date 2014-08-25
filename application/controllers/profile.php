@@ -19,6 +19,16 @@ class Profile extends CI_Controller {
         $data['user'] = $this->user_model->getById($this->session->userdata('id'));
         $this->load->view('profile/index', $data);
 	}
+
+    public function user($idUser)
+    {
+        $header_menu['title'] = 'PERFIL';
+        $header_menu['menu'] = 'PERFIL';
+        $this->load->view('main/header_menu', $header_menu);
+        
+        $data['user'] = $this->user_model->getById($idUser);
+        $this->load->view('profile/user', $data);
+    }
     
     public function edit()
     {
@@ -122,5 +132,5 @@ class Profile extends CI_Controller {
     
 }
 
-/* End of file login.php */
-/* Location: ./application/controllers/login.php */
+/* End of file profile.php */
+/* Location: ./application/controllers/profile.php */

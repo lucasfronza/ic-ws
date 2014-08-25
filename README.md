@@ -8,9 +8,12 @@ TODO
 - Turma: Submenu com todas as funções da turma
 - Turma: Formatação da Data no Modificado do repositório
 - Geral: Separar o arquivo de validação em cada formulário
+- Mensagens: a busca das mensagens no banco de dados não está totalmente correta
 
 DONE
 -----------
+- ~~Mensagens~~
+- ~~Microblog~~
 - ~~Cadastro: Pesquisa por CEP~~
 - ~~Geral: Botão Voltar para navegação nas páginas~~
 - ~~Turma: Adicionar todas as extensões de arquivos que podem ser upadas~~

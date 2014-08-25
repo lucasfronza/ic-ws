@@ -13,7 +13,7 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th> NOME COMPLETO </th>
+                                <th> USUÁRIO </th>
                                 <th> EMAIL </th>
                                 <th> REMOVER </th>
                             </tr>
@@ -21,7 +21,9 @@
                         <tbody>
                             <?php foreach ($linkedUsers as $item): ?>
                             <tr>
-                                <td><?=$item->name?> <?=$item->surname?></td>
+                                <td><a href="<?=site_url('profile/user/'.$item->idUser)?>"><i class="fa fa-eye"></i></a>
+                                    <a href="<?=site_url('messages/user/'.$item->idUser)?>"><i class="fa fa-envelope"></i></a>
+                                    <?=$item->name?> <?=$item->surname?></td>
                                 <td><?=$item->email?></td>
                                 <td><a class="btn btn-danger" href="<?=site_url('course/removeUser/'.$idCourse.'/'.$item->id)?>"><span class="glyphicon glyphicon-remove"></span></a></td>
                             </tr>
