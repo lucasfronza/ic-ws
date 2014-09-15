@@ -1,3 +1,14 @@
+FUNCIONALIDADES
+-----------
+Implementado | Consumindo de terceiros | Implementado como serviço
+------------ | ------------- | -------------
+Repositório | Recuperação de senha | Quadro de Notas(em desenvolvimento)
+Mensagens | Login Facebook | 
+Cadastro | | 
+Login padrão | | 
+Turma | | 
+Microblog | | 
+
 TODO
 -----------
 - Turma: listar apenas alunos nao participantes ou nao permitir adicionar duas vezes o mesmo
