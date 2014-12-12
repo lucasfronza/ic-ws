@@ -17,7 +17,6 @@ TODO
 - Validação Turma
 - Turma: buscar as turmas de acordo com o usuário logado
 - Turma: Submenu com todas as funções da turma
-- Turma: Formatação da Data no Modificado do repositório
 - Geral: Separar o arquivo de validação em cada formulário
 - Mensagens: a busca das mensagens no banco de dados não está totalmente correta
 
@@ -35,6 +34,7 @@ DONE
 - ~~Turma: busca dos alunos por nome e sobrenome~~
 - ~~Turma: crud para adicionar o aluno~~
 - ~~Turma: crud com os alunos ja inseridos~~
+- ~~Turma: Formatação da Data no Modificado do repositório~~
 - ~~Login: Session~~
 - ~~Perfil: Alterar dados~~
 - ~~Perfil: Alterar senha~~

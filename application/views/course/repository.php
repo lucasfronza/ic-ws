@@ -43,7 +43,12 @@
 						<tr>
 							<td><a href="<?=$item->path?>"><?=$item->name?></a></td>
 							<td><?=$item->uploadedBy?></td>
-							<td><?=$item->modified?></td>
+							<td>
+								<?php
+									$time = strtotime($item->modified);
+									echo date('d-m-Y H:i:s', $time);
+								?>
+							</td>
 							<td><?=$item->size?> KB</td>
 						</tr>
 						<?php endforeach ?>

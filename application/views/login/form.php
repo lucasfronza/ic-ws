@@ -4,11 +4,13 @@
 		<div class="col-md-offset-3 col-md-6">
 		
 		<div class="panel panel-default">
-		  <div class="panel-heading">
+		  <!-- <div class="panel-heading">
 			   <h3 class="panel-title">LOGIN</h3>
-		  </div>
+		  </div> -->
 		  <div class="panel-body">
-			
+			<!-- <legend class="text-center">Welcome to ICMC's Mobile Learning Environment</legend> -->
+		  	<img src="<?=base_url('static/img/logo_icmc_usp_mle.png')?>" class="img-responsive" alt="Responsive image">
+			<legend></legend>
 			<form action="<?=site_url('login/authenticate')?>" method="post" class="form-horizontal" role="form" id="form-login" onsubmit="return validate_login();">
 			  
         <div class="form-group" id="groupEmail">
