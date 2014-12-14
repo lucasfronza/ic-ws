@@ -159,6 +159,26 @@ class Course extends CI_Controller {
         //TODO apos inserir, voltar para a pagina
         //com a mesma busca anterior
         $data['linkedUsers'] = $this->course_model->getLinkedUsers($idCourse);
+
+        // Adiciona o usuário no Quadro de Notas
+        $course = $this->course_model->getById($idCourse);
+
+        $curl = curl_init();
+        $url = 'http://localhost/web-services/attendance/user';
+        curl_setopt_array($curl, array(
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_URL => $url,
+            CURLOPT_POST => 1,
+            CURLOPT_POSTFIELDS => array(
+                'key' => $course->attendanceKey,
+                'user' =>  $idUser,
+                'attendance' => 0,
+                'absence' => 0
+                ),
+            CURLOPT_HTTPHEADER => array("Accept: application/json")
+        ));
+        $json = curl_exec($curl);
+        curl_close($curl);
         
         redirect('course/users/'.$idCourse);
     }
