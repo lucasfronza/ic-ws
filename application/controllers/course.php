@@ -41,18 +41,42 @@ class Course extends CI_Controller {
 
     public function insert()
     {
+        // Cria o Quadro de Notas
+        $curl = curl_init();
+        //$url = 'http://lucasfronza.com.br/web-services/index.php/attendance';
+        $url = 'http://localhost/web-services/attendance';
+
+        curl_setopt_array($curl, array(
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_URL => $url,
+            CURLOPT_POST => 1,
+            CURLOPT_POSTFIELDS => array('' => '' ),
+            CURLOPT_HTTPHEADER => array("Accept: application/json")
+        ));
+        $json = curl_exec($curl);
+        curl_close($curl);
+        $response = json_decode($json);
+
+        // Insere a turma criada no banco de dados
         $course = new stdClass();
         $course->name = $this->input->post('name');
         $course->code = $this->input->post('code');
         $course->credits = $this->input->post('credits');
         $course->time = $this->input->post('time');
         $course->description = $this->input->post('description');
+        if($response->status == 1)
+        {
+            $course->attendanceKey = $response->key;
+        }
+        // TODO resolver o problema de o serviço retornar status 0 ou não estar funcionando
         $this->course_model->insert($course);
         
+        // Insere o usuário que criou a turma nos participantes da mesma
         $obj = new stdClass();
         $obj->idCourse = $this->course_model->getId($course);
         $obj->idUser = $this->session->userdata('id');
         $this->course_model->linkUser($obj);
+
         redirect('course');
     }
     
@@ -154,6 +178,7 @@ class Course extends CI_Controller {
         redirect('course/users/'.$idCourse);
     }
     
+    # Repositório - início
     public function repo($idCourse)
     {   
         $data['idCourse'] = $idCourse;
@@ -202,7 +227,9 @@ class Course extends CI_Controller {
 		}
         
     }
+    # Repositório - fim
 
+    # Microblog - início
     public function microblog($idCourse)
     {
         $data["messages"] = $this->microblog_model->get($idCourse);
@@ -224,6 +251,31 @@ class Course extends CI_Controller {
         
         redirect('course/microblog/'.$obj->idCourse);
     }
+    # Microblog - fim
 
+    # Quadro de Presença - início
+    public function attendanceBoard($id)
+    {
+        $course = $this->course_model->getById($id);
+        
+        //$url = 'http://lucasfronza.com.br/web-services/index.php/attendance';
+        $url = 'http://localhost/web-services/attendance';
+        $params = array('key' => $course->attendanceKey);
+        $url .= '?' . http_build_query($params);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept: application/json"));
+        $json = curl_exec($ch);
+        curl_close($ch);
+
+        $data['board'] = json_decode($json);
+
+        $header_menu['title'] = 'TURMAS';
+        $header_menu['menu'] = 'TURMAS';
+        $this->load->view('main/header_menu', $header_menu);
+        $this->load->view('course/attendance', $data);
+    }
+    # Quadro de Presença - fim
 }
 ?>
