@@ -60,7 +60,7 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="<?=base_url('static/js/jquery.js')?>"></script>
+    <script src="<?=base_url('static/js/jquery-1.11.0.js')?>"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="<?=base_url('static/js/bootstrap.min.js')?>"></script>
