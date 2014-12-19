@@ -249,17 +249,23 @@
                         <?php if ($this->session->userdata('logged_in')): ?>
 
                         <?php else: ?>
-                            <li <?php if($menu == 'CADASTRO') echo 'class="active"'; ?>>
-                                <a href="<?=site_url("signup")?>">CADASTRO</a>
+                            <li>
+                                <a href="<?=site_url("signup")?>" <?php if($menu == 'CADASTRO') echo 'class="active"'; ?>>
+                                    CADASTRO
+                                </a>
                             </li>
                         
-                            <li <?php if($menu == 'LOGIN') echo 'class="active"'; ?>>
-                                <a href="<?=site_url("login")?>">LOGIN</a>
+                            <li>
+                                <a href="<?=site_url("login")?>" <?php if($menu == 'LOGIN') echo 'class="active"'; ?>>
+                                    LOGIN
+                                </a>
                             </li>   
                         <?php endif; ?>
                         <?php if ($this->session->userdata('logged_in')): ?>
-                            <li <?php if($menu == 'TURMAS') echo 'class="active"'; ?>>
-                                <a href="<?=site_url("course")?>">TURMAS</a>
+                            <li>
+                                <a href="<?=site_url("course")?>" <?php if($menu == 'TURMAS') echo 'class="active"'; ?>>
+                                    TURMAS
+                                </a>
                             </li>
                         <?php endif; ?>
                     </ul>
