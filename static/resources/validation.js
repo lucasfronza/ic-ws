@@ -131,6 +131,13 @@ function validate_password()
 		$("#form-signup #errorPasswordChecker").html('Senhas não conferem.');
 		erro = true;
 	}
+	
+	if(pass1 == pass2 && pass1.length >= 8)
+	{
+		$("#form-signup #groupPassword").addClass('has-success');
+        
+        $("#form-signup #groupPasswordChecker").addClass('has-success');
+	}
     
 	return !erro;
 }
@@ -161,6 +168,13 @@ function validate_password_edit()
         $("#form-profileupdate #groupPasswordChecker").addClass('has-error');
 		$("#form-profileupdate #errorPasswordChecker").html('Senhas não conferem.');
 		erro = true;
+	}
+
+	if(pass1 == pass2 && pass1.length >= 8)
+	{
+		$("#form-profileupdate #groupPassword").addClass('has-success');
+        
+        $("#form-profileupdate #groupPasswordChecker").addClass('has-success');
 	}
     
 	return !erro;
