@@ -8,6 +8,11 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-4">
+                    <?php if($message == "signup_success"): ?>
+                    <div class="alert alert-success">
+                        Cadastro efetuado com sucesso.
+                    </div>
+                    <?php endif; ?>
 					<form action="<?=site_url('login/authenticate')?>" method="post" role="form" id="form-login" onsubmit="return validate_login();">
 						  
 				        <div class="form-group" id="groupEmail">

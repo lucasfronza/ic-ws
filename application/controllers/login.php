@@ -11,7 +11,7 @@ class Login extends CI_Controller {
     }
     
     
-	public function index()
+	public function index($message = "")
 	{
         $this->load->library('facebook'); // Automatically picks appId and secret from config
         // OR
@@ -50,6 +50,8 @@ class Login extends CI_Controller {
             ));
         }
         //$this->load->view('login/login',$data);
+
+        $data["message"] = $message;
 
         $header_menu['title'] = 'LOGIN';
         $header_menu['menu'] = 'LOGIN';

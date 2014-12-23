@@ -34,17 +34,18 @@ class Signup extends CI_Controller {
             'facebookEmail' => $this->input->post('facebookEmail')
         );
         $this->user_model->set_new_user($data);
-        redirect('signup/success');
+        //redirect('signup/success');
+        redirect('login/index/signup_success');
         
     }
     
-    public function success()
+    /*public function success()
     {
         $header_menu['title'] = 'CADASTRO';
         $header_menu['menu'] = 'CADASTRO';
         $this->load->view('main/header_menu', $header_menu);
         $this->load->view('signup/success');
-    }
+    }*/
 }
 
 /* End of file signup.php */
