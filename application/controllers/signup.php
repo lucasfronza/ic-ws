@@ -33,6 +33,10 @@ class Signup extends CI_Controller {
             'state' => $this->input->post('state'),
             'facebookEmail' => $this->input->post('facebookEmail')
         );
+        if($data['password'] == "da39a3ee5e6b4b0d3255bfef95601890afd80709")//Se a senha eh a vazia
+        {
+            $data['password'] = "password";//Evita a senha vazia
+        }
         $this->user_model->set_new_user($data);
         //redirect('signup/success');
         redirect('login/index/signup_success');
