@@ -80,8 +80,8 @@ class Login extends CI_Controller {
                         'type'      => $query->type
                     );
                     $this->session->set_userdata($sess);
-                    //redirect('profile');
-                    redirect('login/success');
+                    redirect('profile');
+                    //redirect('login/success');
                 } else {
                     
                     $header_menu['title'] = 'LOGIN';
@@ -114,7 +114,8 @@ class Login extends CI_Controller {
         		);
         		$this->session->set_userdata($sess);
                 
-                redirect('login/success');
+                redirect('profile');
+                //redirect('login/success');
             } else {
                 //redirect('login/error/wrong_pass');
                 redirect('login/index/wrong_pass');
