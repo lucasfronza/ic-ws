@@ -9,9 +9,40 @@
             <div class="row">
                 <div class="col-lg-4">
                     <?php if($message == "signup_success"): ?>
-                    <div class="alert alert-success">
-                        Cadastro efetuado com sucesso.
-                    </div>
+                        <div class="alert alert-success alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            Cadastro efetuado com sucesso!
+                        </div>
+                    <?php elseif ($message == "email_not_found"): ?>
+                        <div class="alert alert-danger alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            Email não encontrado!
+                        </div>
+                    <?php elseif ($message == "wrong_pass"): ?>
+                        <div class="alert alert-danger alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            Senha inválida!
+                        </div>
+                    <?php elseif ($message == "password_recovery"): ?>
+                        <div class="alert alert-danger alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            Erro ao recuperar senha!
+                        </div>
+                    <?php elseif ($message == "reset_success"): ?>
+                        <div class="alert alert-success alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            Você receberá um email com a nova senha!
+                        </div>
+                    <?php elseif ($message == "logout_success"): ?>
+                        <div class="alert alert-success alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            Você saiu do sistema!
+                        </div>
+                    <?php elseif ($message != ""): ?>
+                        <div class="alert alert-danger alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            Erro!
+                        </div>
                     <?php endif; ?>
 					<form action="<?=site_url('login/authenticate')?>" method="post" role="form" id="form-login" onsubmit="return validate_login();">
 						  

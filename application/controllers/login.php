@@ -100,7 +100,8 @@ class Login extends CI_Controller {
             $query = $this->user_model->getByEmail($email);
             
             if(empty($query)) {
-                redirect('login/error/email_not_found');
+                //redirect('login/error/email_not_found');
+                redirect('login/index/email_not_found');
             } else if($query->password == $password) {
                 $sess = array(
         			'logged_in' => TRUE,
@@ -114,7 +115,8 @@ class Login extends CI_Controller {
                 
                 redirect('login/success');
             } else {
-                redirect('login/error/wrong_pass');
+                //redirect('login/error/wrong_pass');
+                redirect('login/index/wrong_pass');
             }
         }
     }
@@ -126,7 +128,8 @@ class Login extends CI_Controller {
         $query = $this->user_model->getByEmail($email);
 
         if(empty($query)) {
-            redirect('login/error/email_not_found');
+            //redirect('login/error/email_not_found');
+            redirect('login/index/email_not_found');
         } else if($query->password == $password) {
             $this->load->library('facebook');
 
@@ -138,7 +141,8 @@ class Login extends CI_Controller {
 
             redirect('login/authenticate');
         } else {
-            redirect('login/error/wrong_pass');
+            //redirect('login/error/wrong_pass');
+            redirect('login/index/wrong_pass');
         }
     }
     
@@ -150,26 +154,12 @@ class Login extends CI_Controller {
 
 		$this->session->sess_destroy();
 
-		$header_menu['title'] = 'LOGOUT';
+        redirect('login/index/logout_success');
+		/*$header_menu['title'] = 'LOGOUT';
 		$header_menu['menu'] = 'LOGOUT';
 		$this->load->view('main/header_menu', $header_menu);
-		$this->load->view('login/end');
+		$this->load->view('login/end');*/
 	}
-    
-    public function error($uri)
-    {
-        if($uri == 'email_not_found') {
-            $data['message'] = 'Email não encontrado!';
-        } else if($uri == 'wrong_pass') {
-            $data['message'] = 'Senha inválida!';   
-        } else {
-            $data['message'] = 'Erro!';
-        }
-        $header_menu['title'] = 'LOGIN';
-        $header_menu['menu'] = 'LOGIN';
-        $this->load->view('main/header_menu', $header_menu);
-        $this->load->view('login/error', $data);
-    }
     
     public function success()
     {
@@ -201,7 +191,8 @@ class Login extends CI_Controller {
         $query = $this->user_model->getByEmail($email);
         
         if(empty($query)) {
-            redirect('login/error/email_not_found');
+            //redirect('login/error/email_not_found');
+            redirect('login/index/email_not_found');
         } else {
             
             $config = Array(		
@@ -236,19 +227,21 @@ class Login extends CI_Controller {
 
             if($this->email->send())
             {
-                $header_menu['title'] = 'LOGIN';
+                redirect('login/index/reset_success');
+                /*$header_menu['title'] = 'LOGIN';
                 $header_menu['menu'] = 'LOGIN';
                 $this->load->view('main/header_menu', $header_menu);
                 $data['email'] = $email;
-                $this->load->view('login/reset_success', $data);
+                $this->load->view('login/reset_success', $data);*/
             }
             else
             {
-                $header_menu['title'] = 'LOGIN';
+                redirect('login/index/password_recovery');
+                /*$header_menu['title'] = 'LOGIN';
                 $header_menu['menu'] = 'LOGIN';
                 $this->load->view('main/header_menu', $header_menu);
                 $data['message'] = 'Erro ao recuperar senha!';
-                $this->load->view('login/error', $data);
+                $this->load->view('login/error', $data);*/
             }
         }
 	}
