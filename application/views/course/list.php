@@ -1,21 +1,23 @@
-
-		
-		<div class="row">
-			<div class="col-md-offset-3 col-md-6">
-			
-			<div class="panel panel-default">
-			  <div class="panel-heading">
-				MINHAS TURMAS
-				<span class='col-md-offset-6'><a class='btn btn-primary' href='<?=site_url('course/create')?>'> <span class='glyphicon glyphicon-plus'></span> Nova Turma </a></span>
-			  </div>
-			  <div class="panel-body">
-				
-				<table class="table table-hover">
+		<div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                        	Minhas turmas
+                        	<a class='btn btn-primary' href='<?=site_url('course/create')?>'> <span class='glyphicon glyphicon-plus'></span> Nova Turma </a>
+                        </h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+                <div class="col-lg-8">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
 					<thead>
 						<tr>
 							<th> CÓDIGO </th> 
 							<th> NOME </th>
-							<th> GERENCIAR </th>
+							<th width="20%"> GERENCIAR </th>
 						</tr>
 					</thead>
 					
@@ -29,16 +31,28 @@
 						<?php endforeach ?>
 					</tbody>
 				</table>
-                  
-			  </div>
-			</div>
-			
-		  </div>
-		</div>
-			
-		<script src="<?=base_url('static/resources/jquery.min.js')?>"></script>
-    	<script src="<?=base_url('static/resources/bootstrap.min.js')?>"></script>
-    	
-  
-	</body>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="<?=base_url('static/js/jquery-1.11.0.js')?>"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="<?=base_url('static/js/bootstrap.min.js')?>"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="<?=base_url('static/js/plugins/metisMenu/metisMenu.min.js')?>"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="<?=base_url('static/js/sb-admin-2.js')?>"></script>
+
+</body>
+
 </html>

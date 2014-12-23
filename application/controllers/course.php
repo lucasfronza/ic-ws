@@ -215,6 +215,11 @@ class Course extends CI_Controller {
         if (!is_dir('uploads/'.$idCourse))
         {
             mkdir('./uploads/' . $idCourse, 0777, TRUE);
+            $file = fopen('./uploads/'.$idCourse.'/index.html', "w");
+            fwrite($file, 
+                "<html><head><title>403 Forbidden</title></head><body><p>Directory access is forbidden.</p></body></html>"
+            );
+            fclose($file);
         }
         
         $config['upload_path'] = './uploads/'.$idCourse.'/';

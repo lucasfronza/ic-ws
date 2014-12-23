@@ -1,69 +1,80 @@
+		<div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                        	Repositório
+                        	<a href="<?=site_url('course/manage/'.$idCourse)?>" class="btn btn-warning">Voltar</a>
+                        </h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+                <div class="col-lg-8">
+	                <form action="<?=site_url('course/uploadFile/'.$idCourse)?>" method="post" enctype="multipart/form-data" class="form-horizontal" role="form" id="form-upload">
+						<div class="form-group" id="groupFile">
+							<label for="userfile" class="col-sm-2 control-label">Arquivo</label>
+							<div class="col-sm-5">
+								<input type="file" class="form-control" id="userfile" name="userfile">
+							</div>
 
-		
-		<div class="row">
-			<div class="col-md-offset-3 col-md-6">
-			
-			<div class="panel panel-default">
-			  <div class="panel-heading">
-				REPOSITÓRIO
-                <a href="<?=site_url('course/manage/'.$idCourse)?>" class="btn btn-default col-md-offset-7">Voltar</a>
+							<div class="col-sm-4">
+								<button type="submit" class="btn btn-primary">Fazer Upload</button>
+							</div>
+						</div>
+					</form>
+					<hr>
+	                <?php if (empty($files)): ?>
+	                	<p style="text-align:center;">Repositório vazio.</p>
+	                <?php else: ?>
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th> ARQUIVO </th> 
+									<th class="visible-md visible-lg"> CRIADO POR </th>
+									<th class="visible-md visible-lg"> MODIFICADO </th>
+									<th> TAMANHO </th>
+								</tr>
+							</thead>
+							
+							<tbody>
+								<?php foreach ($files as $item): ?>
+								<tr>
+									<td><a href="<?=$item->path?>"><?=$item->name?></a></td>
+									<td class="visible-md visible-lg"><?=$item->uploadedBy?></td>
+									<td class="visible-md visible-lg">
+										<?php
+											$time = strtotime($item->modified);
+											echo date('d-m-Y H:i:s', $time);
+										?>
+									</td>
+									<td><?=$item->size?> KB</td>
+								</tr>
+								<?php endforeach ?>
+							</tbody>
+						</table>
+       				<?php endif; ?>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
 
-			  </div>
-              <div class="panel-body">
-                  <form action="<?=site_url('course/uploadFile/'.$idCourse)?>" method="post" enctype="multipart/form-data" class="form-horizontal" role="form" id="form-upload">
-                      <div class="form-group" id="groupFile">
-                        <label for="userfile" class="col-sm-2 control-label">Arquivo</label>
-                        <div class="col-sm-5">
-                            <input type="file" class="form-control" id="userfile" name="userfile">
-                        </div>
-                     
-                      <div class="col-sm-4">
-                        <button type="submit" class="btn btn-primary">Fazer Upload</button>
-                      </div>
-                  </div>
-			     </form>
-              </div>
-              <hr>
-			  <div class="panel-body">
-               <?php if (empty($files)): ?>
-                <p style="text-align:center;">Repositório vazio.</p>
-               <?php else: ?>
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th> ARQUIVO </th> 
-							<th> CRIADO POR </th>
-							<th> MODIFICADO </th>
-							<th> TAMANHO </th>
-						</tr>
-					</thead>
-					
-					<tbody>
-						<?php foreach ($files as $item): ?>
-						<tr>
-							<td><a href="<?=$item->path?>"><?=$item->name?></a></td>
-							<td><?=$item->uploadedBy?></td>
-							<td>
-								<?php
-									$time = strtotime($item->modified);
-									echo date('d-m-Y H:i:s', $time);
-								?>
-							</td>
-							<td><?=$item->size?> KB</td>
-						</tr>
-						<?php endforeach ?>
-					</tbody>
-				</table>
-               <?php endif; ?>
-			  </div>
-			</div>
-			
-		  </div>
-		</div>
-			
-		<script src="<?=base_url('static/resources/jquery.min.js')?>"></script>
-    	<script src="<?=base_url('static/resources/bootstrap.min.js')?>"></script>
-    	
-  
-	</body>
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="<?=base_url('static/js/jquery-1.11.0.js')?>"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="<?=base_url('static/js/bootstrap.min.js')?>"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="<?=base_url('static/js/plugins/metisMenu/metisMenu.min.js')?>"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="<?=base_url('static/js/sb-admin-2.js')?>"></script>
+
+</body>
+
 </html>
