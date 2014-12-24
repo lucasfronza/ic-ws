@@ -20,7 +20,7 @@ class Course extends CI_Controller {
         $this->load->view('course/list', $data); 
     }
     
-    public function manage($id)
+    public function manage($id, $message = "")
     {
         //TODO verificar se o usuario tem permissao para acessar
         //a turma
@@ -28,6 +28,7 @@ class Course extends CI_Controller {
         $header_menu['menu'] = 'TURMAS';
         $this->load->view('main/header_menu', $header_menu);
         $data['course'] = $this->course_model->getById($id);
+        $data['message'] = $message;
         $this->load->view('course/manage', $data); 
     }
 

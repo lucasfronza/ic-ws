@@ -17,7 +17,7 @@
 								<li role="presentation"><a role="menuitem" tabindex="-1" href="<?=site_url('course/attendanceBoard/'.$course->id)?>">Quadro de Presença</a></li>
 								</ul>
 							</div>
-							<a href="<?=site_url('course/remove/'.$course->id)?>" class="btn btn-danger" >Excluir turma</a>
+							<a href="<?=site_url('course/manage/'.$course->id.'/remove_course')?>" class="btn btn-danger" >Excluir turma</a>
 			                
                         </h1>
                     </div>
@@ -25,6 +25,14 @@
                 </div>
                 <!-- /.row -->
                 <div class="col-lg-8">
+                	<?php if($message == "remove_course"): ?>
+                        <div class="alert alert-danger alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            Tem certeza que deseja excluir a turma <?=$course->name?> ?
+                            <a class='btn btn-success' href='<?=site_url('course/delete/'.$course->id)?>'> SIM </a>
+        					<a class='btn btn-primary' data-dismiss="alert" href='<?=site_url('course/manage/'.$course->id)?>'> NÃO </a>
+                        </div>
+                    <?php endif; ?>
                     <div class="table-responsive">
                         <table class="table table-hover">
 	                        <tr>
