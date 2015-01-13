@@ -42,7 +42,7 @@ class Course extends CI_Controller {
 
     public function insert()
     {
-        // Cria o Quadro de Notas
+        // Cria o Quadro de Presença
         $curl = curl_init();
         //$url = 'http://lucasfronza.com.br/web-services/index.php/attendance';
         $url = 'http://localhost/web-services/attendance';
@@ -161,7 +161,7 @@ class Course extends CI_Controller {
         //com a mesma busca anterior
         $data['linkedUsers'] = $this->course_model->getLinkedUsers($idCourse);
 
-        // Adiciona o usuário no Quadro de Notas
+        // Adiciona o usuário no Quadro de Presença
         $course = $this->course_model->getById($idCourse);
 
         $curl = curl_init();
