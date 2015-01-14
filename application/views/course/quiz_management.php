@@ -4,7 +4,6 @@
                     <div class="col-lg-12">
                         <h1 class="page-header">
                             Quiz
-                            <a href="<?=site_url('course/manage/'.$idCourse)?>" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Novo</a>
                             <a href="<?=site_url('course/manage/'.$idCourse)?>" class="btn btn-warning">Voltar</a>
                         </h1>
                     </div>
@@ -12,19 +11,40 @@
                 </div>
                 <!-- /.row -->
                 <div class="col-lg-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            Novo Quiz
+                        </div>
+                        <div class="panel-body">
+                            <form action="<?=site_url('course/insertQuiz')?>" method="post" role="form">
+                                <input type="hidden" name="idCourse" value="<?=$idCourse?>">
+                                <div class="form-group" id="groupName">
+                                    <label>Nome</label>
+                                    <input type="text" class="form-control" id="name" name="name">
+                                </div>
+                                <hr>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Criar</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th width="70%"> NOME </th>
+                                    <th width="60%"> NOME </th>
+                                    <th> GERENCIAR </th>
                                     <th> RESPONDER </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach ($quizzes as $item): ?>
                                 <tr>
-                                    <td  width="70%"><?=$item->name?></td>
+                                    <td  width="60%"><?=$item->name?></td>
                                     <td><a href="<?=site_url('course/manage/'.$idCourse)?>" class="btn btn-primary"><span class="glyphicon glyphicon-hand-up"></span></a></td>
+                                    <td><a href="<?=site_url('course/manage/'.$idCourse)?>" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a></td>
                                 </tr>
                                 <?php endforeach ?>
                             </tbody>

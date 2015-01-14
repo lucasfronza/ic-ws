@@ -440,6 +440,35 @@ class Course extends CI_Controller {
         $this->load->view('main/header_menu', $header_menu);
         $this->load->view('course/quiz_management', $data);
     }
+
+    public function insertQuiz()
+    {
+        $idCourse   = $this->input->post('idCourse');
+        $name   = $this->input->post('name');
+
+        // Cria o Quiz
+        $curl = curl_init();
+        $url = 'http://localhost/web-services/quiz';
+
+        curl_setopt_array($curl, array(
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_URL => $url,
+            CURLOPT_POST => 1,
+            CURLOPT_POSTFIELDS => array('' => '' ),
+            CURLOPT_HTTPHEADER => array("Accept: application/json")
+        ));
+        $json = curl_exec($curl);
+        curl_close($curl);
+        $response = json_decode($json);
+
+        $obj = new stdClass();
+        $obj->idCourse = $idCourse;
+        $obj->name = $name;
+        $obj->quizKey = $response->key;
+        $this->course_model->insertQuiz($obj);
+
+        redirect('course/quiz/'.$idCourse);
+    }
     # Quiz - fim
 }
 ?>
