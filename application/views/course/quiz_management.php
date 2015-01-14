@@ -4,6 +4,7 @@
                     <div class="col-lg-12">
                         <h1 class="page-header">
                             Quiz
+                            <a href="<?=site_url('course/addQuiz/'.$idCourse)?>" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Novo</a>
                             <a href="<?=site_url('course/manage/'.$idCourse)?>" class="btn btn-warning">Voltar</a>
                         </h1>
                     </div>
@@ -11,25 +12,6 @@
                 </div>
                 <!-- /.row -->
                 <div class="col-lg-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            Novo Quiz
-                        </div>
-                        <div class="panel-body">
-                            <form action="<?=site_url('course/insertQuiz')?>" method="post" role="form">
-                                <input type="hidden" name="idCourse" value="<?=$idCourse?>">
-                                <div class="form-group" id="groupName">
-                                    <label>Nome</label>
-                                    <input type="text" class="form-control" id="name" name="name">
-                                </div>
-                                <hr>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Criar</button>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>

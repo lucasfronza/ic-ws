@@ -441,20 +441,44 @@ class Course extends CI_Controller {
         $this->load->view('course/quiz_management', $data);
     }
 
+    public function addQuiz($idCourse)
+    {
+        $data['idCourse'] = $idCourse;
+
+        $header_menu['title'] = 'TURMAS';
+        $header_menu['menu'] = 'TURMAS';
+        $this->load->view('main/header_menu', $header_menu);
+        $this->load->view('course/quiz_new', $data);
+    }
+
     public function insertQuiz()
     {
         $idCourse   = $this->input->post('idCourse');
         $name   = $this->input->post('name');
+        $question      = $this->input->post('question');
+        $alternative1  = $this->input->post('alternative1');
+        $alternative2  = $this->input->post('alternative2');
+        $alternative3  = $this->input->post('alternative3');
+        $alternative4  = $this->input->post('alternative4');
+        $alternative5  = $this->input->post('alternative5');
+        $correctAnswer = $this->input->post('correctAnswer');
 
         // Cria o Quiz
         $curl = curl_init();
         $url = 'http://localhost/web-services/quiz';
-
         curl_setopt_array($curl, array(
             CURLOPT_RETURNTRANSFER => 1,
             CURLOPT_URL => $url,
             CURLOPT_POST => 1,
-            CURLOPT_POSTFIELDS => array('' => '' ),
+            CURLOPT_POSTFIELDS => array(
+                'question' => $question,
+                'alternative1'  => $alternative1,
+                'alternative2'  => $alternative2,
+                'alternative3'  => $alternative3,
+                'alternative4'  => $alternative4,
+                'alternative5'  => $alternative5,
+                'correctAnswer' => $correctAnswer
+            ),
             CURLOPT_HTTPHEADER => array("Accept: application/json")
         ));
         $json = curl_exec($curl);
