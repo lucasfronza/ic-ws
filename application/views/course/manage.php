@@ -16,6 +16,7 @@
 								<li role="presentation"><a role="menuitem" tabindex="-1" href="<?=site_url('course/microblog/'.$course->id)?>">Microblog</a></li>
 								<li role="presentation"><a role="menuitem" tabindex="-1" href="<?=site_url('course/attendanceBoard/'.$course->id)?>">Quadro de Presença</a></li>
 								<li role="presentation"><a role="menuitem" tabindex="-1" href="<?=site_url('course/scoreBoard/'.$course->id)?>">Quadro de Notas</a></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="<?=site_url('course/quiz/'.$course->id)?>">Quiz</a></li>
 								</ul>
 							</div>
 							<a href="<?=site_url('course/manage/'.$course->id.'/remove_course')?>" class="btn btn-danger" >Excluir turma</a>

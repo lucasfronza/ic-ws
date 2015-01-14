@@ -71,4 +71,9 @@ class Course_model extends CI_Model {
 	{
 		return $this->db->where('idCourse', $idCourse)->get('coursefiles')->result();
 	}
+
+  public function getQuizzes($idCourse)
+  {
+    return $this->db->where('idCourse', $idCourse)->get('coursequizzes')->result();
+  }
 }

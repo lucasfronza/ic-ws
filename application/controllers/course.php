@@ -426,5 +426,20 @@ class Course extends CI_Controller {
         redirect('course/scoreBoard/'.$idCourse);
     }
     # Quadro de Notas - fim
+
+    # Quiz - início
+    public function quiz($idCourse)
+    {
+        $quizzes = $this->course_model->getQuizzes($idCourse);
+
+        $data['quizzes'] = $quizzes;
+        $data['idCourse'] = $idCourse;
+
+        $header_menu['title'] = 'TURMAS';
+        $header_menu['menu'] = 'TURMAS';
+        $this->load->view('main/header_menu', $header_menu);
+        $this->load->view('course/quiz_management', $data);
+    }
+    # Quiz - fim
 }
 ?>
