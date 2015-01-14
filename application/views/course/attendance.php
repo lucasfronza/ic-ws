@@ -4,6 +4,7 @@
                     <div class="col-lg-12">
                         <h1 class="page-header">
                             Quadro de presença
+                            <!-- <a href="<?=site_url('')?>" class="btn btn-primary" >Adicionar usuário</a> -->
                         </h1>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -20,14 +21,24 @@
                                         <th> USUÁRIO </th>
                                         <th> PRESENÇAS </th>
                                         <th> FALTAS </th>
+                                        <!-- <th> EXCLUIR </th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($board as $item): ?>
                                     <tr>
                                         <td><?=$item->user?></td>
-                                        <td><?=$item->attendance?></td>
-                                        <td><?=$item->absence?></td>
+                                        <td>
+                                            <a href="<?=site_url('course/attendanceUpdate/'.$idCourse.'/'.$item->user.'/'.($item->attendance-1).'/'.$item->absence)?>"><span class="glyphicon glyphicon-minus"></span></a>
+                                            <?=$item->attendance?>
+                                            <a href="<?=site_url('course/attendanceUpdate/'.$idCourse.'/'.$item->user.'/'.($item->attendance+1).'/'.$item->absence)?>"><span class="glyphicon glyphicon-plus"></span></a>
+                                        </td>
+                                        <td>
+                                            <a href="<?=site_url('course/attendanceUpdate/'.$idCourse.'/'.$item->user.'/'.$item->attendance.'/'.($item->absence-1))?>"><span class="glyphicon glyphicon-minus"></span></a>
+                                            <?=$item->absence?>
+                                            <a href="<?=site_url('course/attendanceUpdate/'.$idCourse.'/'.$item->user.'/'.$item->attendance.'/'.($item->absence+1))?>"><span class="glyphicon glyphicon-plus"></span></a>
+                                        </td>
+                                        <!-- <td><a class="btn btn-danger" href='<?=site_url('')?>'><span class="glyphicon glyphicon-trash"></span></a></td> -->
                                     </tr>
                                     <?php endforeach ?>
                                 </tbody>

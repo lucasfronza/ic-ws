@@ -296,11 +296,39 @@ class Course extends CI_Controller {
         curl_close($ch);
 
         $data['board'] = json_decode($json);
+        $data['idCourse'] = $id;
 
         $header_menu['title'] = 'TURMAS';
         $header_menu['menu'] = 'TURMAS';
         $this->load->view('main/header_menu', $header_menu);
         $this->load->view('course/attendance', $data);
+    }
+
+    public function attendanceUpdate($id, $user, $attendance, $absence)
+    {
+        $course = $this->course_model->getById($id);
+        
+        //$url = 'http://lucasfronza.com.br/web-services/index.php/attendance';
+        $url = 'http://localhost/web-services/attendance/user';
+        $ch = curl_init();
+        curl_setopt_array($ch, array(
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_URL => $url,
+            CURLOPT_CUSTOMREQUEST => 'PUT',
+            CURLOPT_POSTFIELDS => http_build_query(
+                array(
+                    'key' => $course->attendanceKey,
+                    'user' => $user,
+                    'attendance' => $attendance,
+                    'absence' => $absence
+                )
+            ),
+            CURLOPT_HTTPHEADER => array("Accept: application/json")
+        ));
+        $json = curl_exec($ch);
+        curl_close($ch);
+
+        redirect('course/attendanceBoard/'.$id);
     }
     # Quadro de Presença - fim
 }
