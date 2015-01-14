@@ -20,16 +20,21 @@
                                     <tr>
                                         <th> USUÁRIO </th>
                                         <th> NOTA </th>
+                                        <th> ATUALIZAR </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($board as $item): ?>
-                                    <tr>
-                                        <td><?=$item->user?></td>
-                                        <td>
-                                            <?=$item->score?>
-                                        </td>
-                                    </tr>
+                                    <form action="<?=site_url('course/scoreUpdate')?>" method="post" role="form">
+                                        <input type="hidden" name="id" value="<?=$item->id?>">
+                                        <input type="hidden" name="scoreKey" value="<?=$scoreKey?>">
+                                        <input type="hidden" name="idCourse" value="<?=$idCourse?>">
+                                        <tr>
+                                            <td><?=$item->user?></td>
+                                            <td><input type="text" class="form-control " id="score" name="score" value="<?=number_format($item->score,2)?>"></td>
+                                            <td><button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-check"></span></button></td>
+                                        </tr>
+                                    </form>
                                     <?php endforeach ?>
                                 </tbody>
                             </table>

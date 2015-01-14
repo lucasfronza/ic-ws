@@ -389,11 +389,41 @@ class Course extends CI_Controller {
 
         $data['board'] = json_decode($json);
         $data['idCourse'] = $idCourse;
+        $data['scoreKey'] = $course->scoreKey;
 
         $header_menu['title'] = 'TURMAS';
         $header_menu['menu'] = 'TURMAS';
         $this->load->view('main/header_menu', $header_menu);
         $this->load->view('course/score_board', $data);
+    }
+
+    public function scoreUpdate()
+    {
+
+        $id         = $this->input->post('id');
+        $scoreKey   = $this->input->post('scoreKey');
+        $idCourse   = $this->input->post('idCourse');
+        $score      = $this->input->post('score');
+
+        $url = 'http://localhost/web-services/board/user';
+        $ch = curl_init();
+        curl_setopt_array($ch, array(
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_URL => $url,
+            CURLOPT_CUSTOMREQUEST => 'PUT',
+            CURLOPT_POSTFIELDS => http_build_query(
+                array(
+                    'key' => $scoreKey,
+                    'id' => $id,
+                    'score' => $score
+                )
+            ),
+            CURLOPT_HTTPHEADER => array("Accept: application/json")
+        ));
+        $json = curl_exec($ch);
+        curl_close($ch);
+
+        redirect('course/scoreBoard/'.$idCourse);
     }
     # Quadro de Notas - fim
 }
