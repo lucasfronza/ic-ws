@@ -5,6 +5,7 @@
                         <h1 class="page-header">
                             Quadro de presença
                             <!-- <a href="<?=site_url('')?>" class="btn btn-primary" >Adicionar usuário</a> -->
+                            <a href="<?=site_url('course/manage/'.$idCourse)?>" class="btn btn-warning">Voltar</a>
                         </h1>
                     </div>
                     <!-- /.col-lg-12 -->
