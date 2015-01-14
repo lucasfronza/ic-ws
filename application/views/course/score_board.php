@@ -3,8 +3,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Quadro de Presença
-                            <!-- <a href="<?=site_url('')?>" class="btn btn-primary" >Adicionar usuário</a> -->
+                            Quadro de Notas
                             <a href="<?=site_url('course/manage/'.$idCourse)?>" class="btn btn-warning">Voltar</a>
                         </h1>
                     </div>
@@ -13,16 +12,14 @@
                 <!-- /.row -->
                 <div class="col-lg-6">
                     <?php if (empty($board)): ?>
-                        <p style="text-align:center;">Quadro de presença vazio.</p>
+                        <p style="text-align:center;">Quadro de notas vazio.</p>
                     <?php else: ?>
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
                                     <tr>
                                         <th> USUÁRIO </th>
-                                        <th> PRESENÇAS </th>
-                                        <th> FALTAS </th>
-                                        <!-- <th> EXCLUIR </th> -->
+                                        <th> NOTA </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -30,16 +27,8 @@
                                     <tr>
                                         <td><?=$item->user?></td>
                                         <td>
-                                            <a href="<?=site_url('course/attendanceUpdate/'.$idCourse.'/'.$item->user.'/'.($item->attendance-1).'/'.$item->absence)?>"><span class="glyphicon glyphicon-minus"></span></a>
-                                            <?=$item->attendance?>
-                                            <a href="<?=site_url('course/attendanceUpdate/'.$idCourse.'/'.$item->user.'/'.($item->attendance+1).'/'.$item->absence)?>"><span class="glyphicon glyphicon-plus"></span></a>
+                                            <?=$item->score?>
                                         </td>
-                                        <td>
-                                            <a href="<?=site_url('course/attendanceUpdate/'.$idCourse.'/'.$item->user.'/'.$item->attendance.'/'.($item->absence-1))?>"><span class="glyphicon glyphicon-minus"></span></a>
-                                            <?=$item->absence?>
-                                            <a href="<?=site_url('course/attendanceUpdate/'.$idCourse.'/'.$item->user.'/'.$item->attendance.'/'.($item->absence+1))?>"><span class="glyphicon glyphicon-plus"></span></a>
-                                        </td>
-                                        <!-- <td><a class="btn btn-danger" href='<?=site_url('')?>'><span class="glyphicon glyphicon-trash"></span></a></td> -->
                                     </tr>
                                     <?php endforeach ?>
                                 </tbody>

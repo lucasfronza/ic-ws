@@ -56,7 +56,23 @@ class Course extends CI_Controller {
         ));
         $json = curl_exec($curl);
         curl_close($curl);
-        $response = json_decode($json);
+        $response_attendance = json_decode($json);
+
+        // Cria o Quadro de Notas
+        $curl = curl_init();
+        //$url = 'http://lucasfronza.com.br/web-services/index.php/attendance';
+        $url = 'http://localhost/web-services/board';
+
+        curl_setopt_array($curl, array(
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_URL => $url,
+            CURLOPT_POST => 1,
+            CURLOPT_POSTFIELDS => array('' => '' ),
+            CURLOPT_HTTPHEADER => array("Accept: application/json")
+        ));
+        $json = curl_exec($curl);
+        curl_close($curl);
+        $response_score = json_decode($json);
 
         // Insere a turma criada no banco de dados
         $course = new stdClass();
@@ -65,9 +81,13 @@ class Course extends CI_Controller {
         $course->credits = $this->input->post('credits');
         $course->time = $this->input->post('time');
         $course->description = $this->input->post('description');
-        if($response->status == 1)
+        if($response_attendance->status == 1)
         {
-            $course->attendanceKey = $response->key;
+            $course->attendanceKey = $response_attendance->key;
+        }
+        if($response_score->status == 1)
+        {
+            $course->scoreKey = $response_score->key;
         }
         // TODO resolver o problema de o serviço retornar status 0 ou não estar funcionando
         $this->course_model->insert($course);
@@ -175,6 +195,25 @@ class Course extends CI_Controller {
                 'user' =>  $idUser,
                 'attendance' => 0,
                 'absence' => 0
+                ),
+            CURLOPT_HTTPHEADER => array("Accept: application/json")
+        ));
+        $json = curl_exec($curl);
+        curl_close($curl);
+
+        // Adiciona o usuário no Quadro de Notas
+        $course = $this->course_model->getById($idCourse);
+
+        $curl = curl_init();
+        $url = 'http://localhost/web-services/board/user';
+        curl_setopt_array($curl, array(
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_URL => $url,
+            CURLOPT_POST => 1,
+            CURLOPT_POSTFIELDS => array(
+                'key' => $course->scoreKey,
+                'user' =>  $idUser,
+                'score' => 0
                 ),
             CURLOPT_HTTPHEADER => array("Accept: application/json")
         ));
@@ -331,5 +370,31 @@ class Course extends CI_Controller {
         redirect('course/attendanceBoard/'.$id);
     }
     # Quadro de Presença - fim
+
+    # Quadro de Notas - início
+    public function scoreBoard($idCourse)
+    {
+        $course = $this->course_model->getById($idCourse);
+        
+        //$url = 'http://lucasfronza.com.br/web-services/index.php/attendance';
+        $url = 'http://localhost/web-services/board';
+        $params = array('key' => $course->scoreKey);
+        $url .= '?' . http_build_query($params);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept: application/json"));
+        $json = curl_exec($ch);
+        curl_close($ch);
+
+        $data['board'] = json_decode($json);
+        $data['idCourse'] = $idCourse;
+
+        $header_menu['title'] = 'TURMAS';
+        $header_menu['menu'] = 'TURMAS';
+        $this->load->view('main/header_menu', $header_menu);
+        $this->load->view('course/score_board', $data);
+    }
+    # Quadro de Notas - fim
 }
 ?>
