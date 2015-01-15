@@ -16,17 +16,17 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th width="60%"> NOME </th>
-                                    <th> GERENCIAR </th>
+                                    <th width="70%"> NOME </th>
+                                    <!-- <th> GERENCIAR </th> -->
                                     <th> RESPONDER </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach ($quizzes as $item): ?>
                                 <tr>
-                                    <td  width="60%"><?=$item->name?></td>
-                                    <td><a href="<?=site_url('course/manage/'.$idCourse)?>" class="btn btn-primary"><span class="glyphicon glyphicon-hand-up"></span></a></td>
-                                    <td><a href="<?=site_url('course/manage/'.$idCourse)?>" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                                    <td  width="70%"><?=$item->name?></td>
+                                    <!-- <td><a href="<?=site_url('course/manage/'.$idCourse)?>" class="btn btn-primary"><span class="glyphicon glyphicon-hand-up"></span></a></td> -->
+                                    <td><a href="<?=site_url('course/quizQuestion/'.$idCourse.'/'.$item->id)?>" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a></td>
                                 </tr>
                                 <?php endforeach ?>
                             </tbody>

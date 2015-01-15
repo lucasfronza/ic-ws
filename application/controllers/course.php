@@ -493,6 +493,56 @@ class Course extends CI_Controller {
 
         redirect('course/quiz/'.$idCourse);
     }
+
+    public function quizQuestion($idCourse, $idQuiz)
+    {
+        $quiz = $this->course_model->getQuiz($idQuiz);
+
+        $url = 'http://localhost/web-services/quiz';
+        $params = array('key' => $quiz->quizKey);
+        $url .= '?' . http_build_query($params);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept: application/json"));
+        $json = curl_exec($ch);
+        curl_close($ch);
+
+        $data['quizName'] = $quiz->name;
+        $data['quiz'] = json_decode($json);
+        $data['idCourse'] = $idCourse;
+        $data['idQuiz'] = $quiz->id;
+
+        $header_menu['title'] = 'TURMAS';
+        $header_menu['menu'] = 'TURMAS';
+        $this->load->view('main/header_menu', $header_menu);
+        $this->load->view('course/quiz_question', $data);
+    }
+
+    public function quizCheck()
+    {
+        $idCourse       = $this->input->post('idCourse');
+        $idQuiz         = $this->input->post('idQuiz');
+        $selectedAnswer = $this->input->post('optionsRadios');
+        $correctAnswer  = $this->input->post('correctAnswer');
+
+        if($selectedAnswer == $correctAnswer)
+        {
+            $data['message'] = 'correct';
+        }
+        else
+        {
+            $data['message'] = 'wrong';
+        }
+
+        $data['idCourse'] = $idCourse;
+        $data['idQuiz'] = $idQuiz;
+
+        $header_menu['title'] = 'TURMAS';
+        $header_menu['menu'] = 'TURMAS';
+        $this->load->view('main/header_menu', $header_menu);
+        $this->load->view('course/quiz_check', $data);
+    }
     # Quiz - fim
 }
 ?>
