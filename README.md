@@ -2,9 +2,9 @@ FUNCIONALIDADES
 -----------
 Implementado | Consumindo de terceiros | Implementado como serviço
 ------------ | ------------- | -------------
-Repositório | Recuperação de senha | Quadro de Notas(em desenvolvimento)
-Mensagens | Login Facebook | 
-Cadastro | Autocompletar endereço pelo CEP | 
+Repositório | Recuperação de senha | Quadro de Notas
+Mensagens | Login Facebook | Quadro de Presença
+Cadastro | Autocompletar endereço pelo CEP | Quiz
 Login padrão | | 
 Turma | | 
 Microblog | | 
@@ -13,11 +13,9 @@ TODO
 -----------
 - Turma: listar apenas alunos nao participantes ou nao permitir adicionar duas vezes o mesmo
 - Perfil: Foto
-- Cadastro: Verificar se email ja existe antes de submeter o formulário
+- Cadastro: Verificar se email ja existe
 - Validação Turma
 - Turma: buscar as turmas de acordo com o usuário logado
-- Turma: Submenu com todas as funções da turma
-- Geral: Separar o arquivo de validação em cada formulário
 - Mensagens: a busca das mensagens no banco de dados não está totalmente correta
 
 DONE
