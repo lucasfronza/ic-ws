@@ -353,7 +353,7 @@ class Course extends CI_Controller {
         curl_setopt_array($ch, array(
             CURLOPT_RETURNTRANSFER => 1,
             CURLOPT_URL => $url,
-            CURLOPT_CUSTOMREQUEST => 'PUT',
+            /*CURLOPT_CUSTOMREQUEST => 'PUT',*/
             CURLOPT_POSTFIELDS => http_build_query(
                 array(
                     'key' => $course->attendanceKey,
@@ -362,7 +362,7 @@ class Course extends CI_Controller {
                     'absence' => $absence
                 )
             ),
-            CURLOPT_HTTPHEADER => array("Accept: application/json")
+            CURLOPT_HTTPHEADER => array("Accept: application/json", 'X-HTTP-Method-Override: PUT')
         ));
         $json = curl_exec($ch);
         curl_close($ch);
@@ -410,7 +410,7 @@ class Course extends CI_Controller {
         curl_setopt_array($ch, array(
             CURLOPT_RETURNTRANSFER => 1,
             CURLOPT_URL => $url,
-            CURLOPT_CUSTOMREQUEST => 'PUT',
+            /*CURLOPT_CUSTOMREQUEST => 'PUT',*/
             CURLOPT_POSTFIELDS => http_build_query(
                 array(
                     'key' => $scoreKey,
@@ -418,7 +418,7 @@ class Course extends CI_Controller {
                     'score' => $score
                 )
             ),
-            CURLOPT_HTTPHEADER => array("Accept: application/json")
+            CURLOPT_HTTPHEADER => array("Accept: application/json", 'X-HTTP-Method-Override: PUT')
         ));
         $json = curl_exec($ch);
         curl_close($ch);

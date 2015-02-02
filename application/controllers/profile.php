@@ -52,9 +52,10 @@ class Profile extends CI_Controller {
             'state' => $this->input->post('state')
         );
         
-        if( !empty($this->input->post('password')) )
+        $password = $this->input->post('password');
+        if( !empty($password) )
         {
-            $data['password'] = do_hash($this->input->post('password'));
+            $data['password'] = do_hash($password);
         }
         
         $this->user_model->updateUser($this->session->userdata('id'), $data);
