@@ -30,7 +30,7 @@
                                         <input type="hidden" name="scoreKey" value="<?=$scoreKey?>">
                                         <input type="hidden" name="idCourse" value="<?=$idCourse?>">
                                         <tr>
-                                            <td><?=$item->user?></td>
+                                            <td><?=$item->name?></td>
                                             <td><input type="text" class="form-control " id="score" name="score" value="<?=number_format($item->score,2)?>"></td>
                                             <td><button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-check"></span></button></td>
                                         </tr>

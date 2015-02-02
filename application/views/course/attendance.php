@@ -28,7 +28,7 @@
                                 <tbody>
                                     <?php foreach ($board as $item): ?>
                                     <tr>
-                                        <td><?=$item->user?></td>
+                                        <td><?=$item->name?></td>
                                         <td>
                                             <a href="<?=site_url('course/attendanceUpdate/'.$idCourse.'/'.$item->user.'/'.($item->attendance-1).'/'.$item->absence)?>"><span class="glyphicon glyphicon-minus"></span></a>
                                             <?=$item->attendance?>

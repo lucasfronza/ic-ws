@@ -56,5 +56,15 @@ class User_model extends CI_Model {
         return $this->db->get('user')->result();
         
     }
+
+    public function getNamesById($obj)
+    {
+        foreach ($obj as $item)
+        {
+            $user = $this->db->where('id', $item->user)->get('user')->row();
+            $item->name = $user->name.' '.$user->surname;
+        }
+        return $obj;
+    }
     
 }

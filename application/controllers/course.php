@@ -346,7 +346,9 @@ class Course extends CI_Controller {
         $json = curl_exec($ch);
         curl_close($ch);
 
-        $data['board'] = json_decode($json);
+        $board = json_decode($json);
+        $board = $this->user_model->getNamesById($board);
+        $data['board'] = $board;
         $data['idCourse'] = $id;
 
         $header_menu['course'] = $course;
@@ -400,7 +402,9 @@ class Course extends CI_Controller {
         $json = curl_exec($ch);
         curl_close($ch);
 
-        $data['board'] = json_decode($json);
+        $board = json_decode($json);
+        $board = $this->user_model->getNamesById($board);
+        $data['board'] = $board;
         $data['idCourse'] = $idCourse;
         $data['scoreKey'] = $course->scoreKey;
 
