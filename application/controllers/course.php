@@ -24,10 +24,12 @@ class Course extends CI_Controller {
     {
         //TODO verificar se o usuario tem permissao para acessar
         //a turma
+        $course = $this->course_model->getById($id);
         $header_menu['title'] = 'TURMAS';
-        $header_menu['menu'] = 'TURMAS';
+        $header_menu['menu'] = '';
+        $header_menu['course'] = $course;
         $this->load->view('main/header_menu', $header_menu);
-        $data['course'] = $this->course_model->getById($id);
+        $data['course'] = $course;
         $data['message'] = $message;
         $this->load->view('course/manage', $data); 
     }
@@ -35,7 +37,7 @@ class Course extends CI_Controller {
     public function create()
     {
         $header_menu['title'] = 'TURMAS';
-        $header_menu['menu'] = 'TURMAS';
+        $header_menu['menu'] = '';
         $this->load->view('main/header_menu', $header_menu);
         $this->load->view('course/new');
     }
@@ -103,9 +105,11 @@ class Course extends CI_Controller {
     
     public function edit($id)
     {
+        $course = $this->course_model->getById($id);
+        $header_menu['course'] = $course;
         $header_menu['title'] = 'TURMAS';
-        $header_menu['menu'] = 'TURMAS';
-        $data['course'] = $this->course_model->getById($id);
+        $header_menu['menu'] = '';
+        $data['course'] = $course;
         $this->load->view('main/header_menu', $header_menu);
         $this->load->view('course/edit', $data);
     }
@@ -127,7 +131,7 @@ class Course extends CI_Controller {
     public function remove($id)
     {
         $header_menu['title'] = 'TURMAS';
-        $header_menu['menu'] = 'TURMAS';
+        $header_menu['menu'] = '';
         $this->load->view('main/header_menu', $header_menu);
         $data['course'] = $this->course_model->getById($id);
         $this->load->view('course/remove_confirmation', $data);
@@ -151,8 +155,10 @@ class Course extends CI_Controller {
         
         $data['linkedUsers'] = $this->course_model->getLinkedUsers($idCourse);
         
+        $course = $this->course_model->getById($idCourse);
+        $header_menu['course'] = $course;
         $header_menu['title'] = 'TURMAS';
-        $header_menu['menu'] = 'TURMAS';
+        $header_menu['menu'] = '';
         $this->load->view('main/header_menu', $header_menu);
         $this->load->view('course/users_search', $data);
     }
@@ -163,8 +169,10 @@ class Course extends CI_Controller {
         
         $data['linkedUsers'] = $this->course_model->getLinkedUsers($idCourse);
         
+        $course = $this->course_model->getById($idCourse);
+        $header_menu['course'] = $course;
         $header_menu['title'] = 'TURMAS';
-        $header_menu['menu'] = 'TURMAS';
+        $header_menu['menu'] = '';
         $this->load->view('main/header_menu', $header_menu);
         $this->load->view('course/users', $data);
     }
@@ -244,8 +252,10 @@ class Course extends CI_Controller {
         $data['idCourse'] = $idCourse;
         $data['files'] = $this->course_model->getFiles($idCourse);
         
+        $course = $this->course_model->getById($idCourse);
+        $header_menu['course'] = $course;
         $header_menu['title'] = 'TURMAS';
-        $header_menu['menu'] = 'TURMAS';
+        $header_menu['menu'] = '';
         $this->load->view('main/header_menu', $header_menu);
         $this->load->view('course/repository', $data);
     }
@@ -300,8 +310,10 @@ class Course extends CI_Controller {
         $data["messages"] = $this->microblog_model->get($idCourse);
         $data["idCourse"] = $idCourse;
 
+        $course = $this->course_model->getById($idCourse);
+        $header_menu['course'] = $course;
         $header_menu['title'] = 'TURMAS';
-        $header_menu['menu'] = 'TURMAS';
+        $header_menu['menu'] = '';
         $this->load->view('main/header_menu', $header_menu);
         $this->load->view('course/microblog', $data);
     }
@@ -337,8 +349,9 @@ class Course extends CI_Controller {
         $data['board'] = json_decode($json);
         $data['idCourse'] = $id;
 
+        $header_menu['course'] = $course;
         $header_menu['title'] = 'TURMAS';
-        $header_menu['menu'] = 'TURMAS';
+        $header_menu['menu'] = '';
         $this->load->view('main/header_menu', $header_menu);
         $this->load->view('course/attendance', $data);
     }
@@ -391,8 +404,9 @@ class Course extends CI_Controller {
         $data['idCourse'] = $idCourse;
         $data['scoreKey'] = $course->scoreKey;
 
+        $header_menu['course'] = $course;
         $header_menu['title'] = 'TURMAS';
-        $header_menu['menu'] = 'TURMAS';
+        $header_menu['menu'] = '';
         $this->load->view('main/header_menu', $header_menu);
         $this->load->view('course/score_board', $data);
     }
@@ -435,8 +449,10 @@ class Course extends CI_Controller {
         $data['quizzes'] = $quizzes;
         $data['idCourse'] = $idCourse;
 
+        $course = $this->course_model->getById($idCourse);
+        $header_menu['course'] = $course;
         $header_menu['title'] = 'TURMAS';
-        $header_menu['menu'] = 'TURMAS';
+        $header_menu['menu'] = '';
         $this->load->view('main/header_menu', $header_menu);
         $this->load->view('course/quiz_management', $data);
     }
@@ -445,8 +461,10 @@ class Course extends CI_Controller {
     {
         $data['idCourse'] = $idCourse;
 
+        $course = $this->course_model->getById($idCourse);
+        $header_menu['course'] = $course;
         $header_menu['title'] = 'TURMAS';
-        $header_menu['menu'] = 'TURMAS';
+        $header_menu['menu'] = '';
         $this->load->view('main/header_menu', $header_menu);
         $this->load->view('course/quiz_new', $data);
     }
@@ -513,8 +531,10 @@ class Course extends CI_Controller {
         $data['idCourse'] = $idCourse;
         $data['idQuiz'] = $quiz->id;
 
+        $course = $this->course_model->getById($idCourse);
+        $header_menu['course'] = $course;
         $header_menu['title'] = 'TURMAS';
-        $header_menu['menu'] = 'TURMAS';
+        $header_menu['menu'] = '';
         $this->load->view('main/header_menu', $header_menu);
         $this->load->view('course/quiz_question', $data);
     }
@@ -538,8 +558,10 @@ class Course extends CI_Controller {
         $data['idCourse'] = $idCourse;
         $data['idQuiz'] = $idQuiz;
 
+        $course = $this->course_model->getById($idCourse);
+        $header_menu['course'] = $course;
         $header_menu['title'] = 'TURMAS';
-        $header_menu['menu'] = 'TURMAS';
+        $header_menu['menu'] = '';
         $this->load->view('main/header_menu', $header_menu);
         $this->load->view('course/quiz_check', $data);
     }
