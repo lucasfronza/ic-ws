@@ -72,6 +72,16 @@ class Course_model extends CI_Model {
 		return $this->db->where('idCourse', $idCourse)->get('coursefiles')->result();
 	}
 
+  public function getFile($idCourse, $id)
+  {
+    return $this->db->where('idCourse', $idCourse)->where('id', $id)->get('coursefiles')->row();
+  }
+
+  public function deleteFile($idCourse, $id)
+  {
+    return $this->db->where('idCourse', $idCourse)->where('id', $id)->delete('coursefiles');
+  }
+
   public function insertQuiz($obj)
   {
       return $this->db->insert('coursequizzes', $obj);

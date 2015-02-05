@@ -302,6 +302,14 @@ class Course extends CI_Controller {
 		}
         
     }
+
+    public function removeFile($idCourse, $id)
+    {   
+        $file = $this->course_model->getFile($idCourse, $id);
+        unlink('uploads/'.$idCourse.'/'.$file->name);
+        $this->course_model->deleteFile($idCourse, $id);
+        redirect('course/repo/'.$idCourse);
+    }
     # Repositório - fim
 
     # Microblog - início

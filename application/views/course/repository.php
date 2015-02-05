@@ -10,7 +10,7 @@
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
-                <div class="col-lg-8">
+                <div class="col-lg-10">
 	                <form action="<?=site_url('course/uploadFile/'.$idCourse)?>" method="post" enctype="multipart/form-data" class="form-horizontal" role="form" id="form-upload">
 						<div class="form-group" id="groupFile">
 							<label for="userfile" class="col-sm-2 control-label">Arquivo</label>
@@ -27,32 +27,36 @@
 	                <?php if (empty($files)): ?>
 	                	<p style="text-align:center;">Repositório vazio.</p>
 	                <?php else: ?>
-						<table class="table table-hover">
-							<thead>
-								<tr>
-									<th> ARQUIVO </th> 
-									<th class="visible-md visible-lg"> CRIADO POR </th>
-									<th class="visible-md visible-lg"> MODIFICADO </th>
-									<th> TAMANHO </th>
-								</tr>
-							</thead>
-							
-							<tbody>
-								<?php foreach ($files as $item): ?>
-								<tr>
-									<td><a href="<?=$item->path?>"><?=$item->name?></a></td>
-									<td class="visible-md visible-lg"><?=$item->uploadedBy?></td>
-									<td class="visible-md visible-lg">
-										<?php
-											$time = strtotime($item->modified);
-											echo date('d-m-Y H:i:s', $time);
-										?>
-									</td>
-									<td><?=$item->size?> KB</td>
-								</tr>
-								<?php endforeach ?>
-							</tbody>
-						</table>
+	                	<div class="table-responsive">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th> ARQUIVO </th> 
+										<th class="visible-md visible-lg"> CRIADO POR </th>
+										<th class="visible-md visible-lg"> MODIFICADO </th>
+										<th> TAMANHO </th>
+										<th> REMOVER </th>
+									</tr>
+								</thead>
+								
+								<tbody>
+									<?php foreach ($files as $item): ?>
+									<tr>
+										<td><a href="<?=$item->path?>"><?=$item->name?></a></td>
+										<td class="visible-md visible-lg"><?=$item->uploadedBy?></td>
+										<td class="visible-md visible-lg">
+											<?php
+												$time = strtotime($item->modified);
+												echo date('d-m-Y H:i:s', $time);
+											?>
+										</td>
+										<td><?=$item->size?> KB</td>
+										<td><a class="btn btn-danger" href="<?=site_url('course/removeFile/'.$idCourse.'/'.$item->id)?>"><span class="glyphicon glyphicon-remove"></span></a></td>
+									</tr>
+									<?php endforeach ?>
+								</tbody>
+							</table>
+						</div>
        				<?php endif; ?>
                 </div>
             </div>
