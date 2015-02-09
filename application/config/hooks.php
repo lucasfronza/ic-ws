@@ -10,7 +10,12 @@
 |
 */
 
-
+$hook['pre_controller'] = array(
+    'class'    => 'Logincheck',
+    'function' => 'logincheck',
+    'filename' => 'logincheck.php',
+    'filepath' => 'hooks'
+);
 
 /* End of file hooks.php */
 /* Location: ./application/config/hooks.php */
