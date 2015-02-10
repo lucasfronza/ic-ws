@@ -265,13 +265,13 @@
                             <li>
                                 <a href="#"><i class="fa fa-sitemap fa-fw"></i> <?=$course->name?><span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
-                                    <li><a href="<?=site_url('course/manage/'.$course->id)?>">Gerência</a></li>
-                                    <li><a href="<?=site_url('course/repo/'.$course->id)?>">Repositório</a></li>
-                                    <li><a href="<?=site_url('course/users/'.$course->id)?>">Participantes</a></li>
+                                    <li><a href="<?=site_url('course/manage/'.$course->id)?>"><i class="fa fa-pencil fa-fw"></i> Gerência</a></li>
                                     <li><a href="<?=site_url('course/microblog/'.$course->id)?>">Microblog</a></li>
-                                    <li><a href="<?=site_url('course/attendanceBoard/'.$course->id)?>">Quadro de Presença</a></li>
+                                    <li><a href="<?=site_url('course/users/'.$course->id)?>">Participantes</a></li>
                                     <li><a href="<?=site_url('course/scoreBoard/'.$course->id)?>">Quadro de Notas</a></li>
+                                    <li><a href="<?=site_url('course/attendanceBoard/'.$course->id)?>">Quadro de Presença</a></li>
                                     <li><a href="<?=site_url('course/quiz/'.$course->id)?>">Quiz</a></li>
+                                    <li><a href="<?=site_url('course/repo/'.$course->id)?>">Repositório</a></li>
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
