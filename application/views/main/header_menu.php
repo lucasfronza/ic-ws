@@ -246,21 +246,6 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <?php if ($this->session->userdata('logged_in')): ?>
-
-                        <?php else: ?>
-                            <li>
-                                <a href="<?=site_url("signup")?>" <?php if($menu == 'CADASTRO') echo 'class="active"'; ?>>
-                                    <i class="fa fa-pencil fa-fw"></i> CADASTRO
-                                </a>
-                            </li>
-                        
-                            <li>
-                                <a href="<?=site_url("login")?>" <?php if($menu == 'LOGIN') echo 'class="active"'; ?>>
-                                    <i class="fa fa-sign-in fa-fw"></i> LOGIN
-                                </a>
-                            </li>   
-                        <?php endif; ?>
-                        <?php if ($this->session->userdata('logged_in')): ?>
                             <?php if (isset($course)): ?>
                             <li>
                                 <a href="#"><i class="fa fa-sitemap fa-fw"></i> <?=$course->name?><span class="fa arrow"></span></a>
@@ -283,6 +268,18 @@
                                     <i class="fa fa-university fa-fw"></i> TURMAS
                                 </a>
                             </li>
+                        <?php else: ?>
+                            <li>
+                                <a href="<?=site_url("signup")?>" <?php if($menu == 'CADASTRO') echo 'class="active"'; ?>>
+                                    <i class="fa fa-pencil fa-fw"></i> CADASTRO
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="<?=site_url("login")?>" <?php if($menu == 'LOGIN') echo 'class="active"'; ?>>
+                                    <i class="fa fa-sign-in fa-fw"></i> LOGIN
+                                </a>
+                            </li>   
                         <?php endif; ?>
                     </ul>
                 </div>
