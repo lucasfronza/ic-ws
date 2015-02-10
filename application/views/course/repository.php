@@ -10,19 +10,21 @@
                 </div>
                 <!-- /.row -->
                 <div class="col-lg-10">
-	                <form action="<?=site_url('course/uploadFile/'.$idCourse)?>" method="post" enctype="multipart/form-data" class="form-horizontal" role="form" id="form-upload">
-						<div class="form-group" id="groupFile">
-							<label for="userfile" class="col-sm-2 control-label">Arquivo</label>
-							<div class="col-sm-5">
-								<input type="file" class="form-control" id="userfile" name="userfile">
-							</div>
+	                <?php if($this->session->userdata('type') == 'administrador' || $this->session->userdata('type') == 'professor'): ?>
+		                <form action="<?=site_url('course/uploadFile/'.$idCourse)?>" method="post" enctype="multipart/form-data" class="form-horizontal" role="form" id="form-upload">
+							<div class="form-group" id="groupFile">
+								<label for="userfile" class="col-sm-2 control-label">Arquivo</label>
+								<div class="col-sm-5">
+									<input type="file" class="form-control" id="userfile" name="userfile">
+								</div>
 
-							<div class="col-sm-4">
-								<button type="submit" class="btn btn-primary">Fazer Upload</button>
+								<div class="col-sm-4">
+									<button type="submit" class="btn btn-primary">Fazer Upload</button>
+								</div>
 							</div>
-						</div>
-					</form>
-					<hr>
+						</form>
+						<hr>
+					<?php endif; ?>
 	                <?php if (empty($files)): ?>
 	                	<p style="text-align:center;">Repositório vazio.</p>
 	                <?php else: ?>
@@ -34,7 +36,9 @@
 										<th class="visible-md visible-lg"> CRIADO POR </th>
 										<th class="visible-md visible-lg"> MODIFICADO </th>
 										<th> TAMANHO </th>
-										<th> REMOVER </th>
+										<?php if($this->session->userdata('type') == 'administrador' || $this->session->userdata('type') == 'professor'): ?>
+											<th> REMOVER </th>
+										<?php endif; ?>
 									</tr>
 								</thead>
 								
@@ -50,7 +54,9 @@
 											?>
 										</td>
 										<td><?=$item->size?> KB</td>
-										<td><a class="btn btn-danger" href="<?=site_url('course/removeFile/'.$idCourse.'/'.$item->id)?>"><span class="glyphicon glyphicon-remove"></span></a></td>
+										<?php if($this->session->userdata('type') == 'administrador' || $this->session->userdata('type') == 'professor'): ?>
+											<td><a class="btn btn-danger" href="<?=site_url('course/removeFile/'.$idCourse.'/'.$item->id)?>"><span class="glyphicon glyphicon-remove"></span></a></td>
+										<?php endif; ?>
 									</tr>
 									<?php endforeach ?>
 								</tbody>

@@ -36,14 +36,23 @@ class Course extends CI_Controller {
 
     public function create()
     {
+        if($this->session->userdata('type') != 'administrador' && $this->session->userdata('type') != 'professor')
+        {
+            redirect('course');
+        }
         $header_menu['title'] = 'TURMAS';
         $header_menu['menu'] = '';
         $this->load->view('main/header_menu', $header_menu);
         $this->load->view('course/new');
+        
     }
 
     public function insert()
     {
+        if($this->session->userdata('type') != 'administrador' && $this->session->userdata('type') != 'professor')
+        {
+            redirect('course');
+        }
         // Cria o Quadro de Presença
         $curl = curl_init();
         //$url = 'http://lucasfronza.com.br/web-services/index.php/attendance';
@@ -105,6 +114,10 @@ class Course extends CI_Controller {
     
     public function edit($id)
     {
+        if($this->session->userdata('type') != 'administrador' && $this->session->userdata('type') != 'professor')
+        {
+            redirect('course');
+        }
         $course = $this->course_model->getById($id);
         $header_menu['course'] = $course;
         $header_menu['title'] = 'TURMAS';
@@ -116,6 +129,10 @@ class Course extends CI_Controller {
     
     public function update()
     {
+        if($this->session->userdata('type') != 'administrador' && $this->session->userdata('type') != 'professor')
+        {
+            redirect('course');
+        }
         $id = $this->input->post('id');
         $course = new stdClass();
         $course->name = $this->input->post('name');
@@ -130,6 +147,10 @@ class Course extends CI_Controller {
     
     public function remove($id)
     {
+        if($this->session->userdata('type') != 'administrador' && $this->session->userdata('type') != 'professor')
+        {
+            redirect('course');
+        }
         $header_menu['title'] = 'TURMAS';
         $header_menu['menu'] = '';
         $this->load->view('main/header_menu', $header_menu);
@@ -140,6 +161,10 @@ class Course extends CI_Controller {
     
     public function delete($id)
     {
+        if($this->session->userdata('type') != 'administrador' && $this->session->userdata('type') != 'professor')
+        {
+            redirect('course');
+        }
         $this->course_model->delete($id);
         
         redirect('course');
@@ -179,6 +204,10 @@ class Course extends CI_Controller {
     
     public function addUser($idCourse, $idUser)
     {
+        if($this->session->userdata('type') != 'administrador' && $this->session->userdata('type') != 'professor')
+        {
+            redirect('course');
+        }
         $obj = new stdClass();
         $obj->idCourse = $idCourse;
         $obj->idUser = $idUser;
@@ -233,6 +262,10 @@ class Course extends CI_Controller {
     
     public function removeUser($idCourse, $idUser)
     {
+        if($this->session->userdata('type') != 'administrador' && $this->session->userdata('type') != 'professor')
+        {
+            redirect('course');
+        }
         $obj = new stdClass();
         $obj->idCourse = $idCourse;
         $obj->idUser = $idUser;
@@ -261,7 +294,11 @@ class Course extends CI_Controller {
     }
     
     public function uploadFile($idCourse)
-    {   
+    {
+        if($this->session->userdata('type') != 'administrador' && $this->session->userdata('type') != 'professor')
+        {
+            redirect('course');
+        }
         if (!is_dir('uploads/'.$idCourse))
         {
             mkdir('./uploads/' . $idCourse, 0777, TRUE);
@@ -304,7 +341,11 @@ class Course extends CI_Controller {
     }
 
     public function removeFile($idCourse, $id)
-    {   
+    {
+        if($this->session->userdata('type') != 'administrador' && $this->session->userdata('type') != 'professor')
+        {
+            redirect('course');
+        }
         $file = $this->course_model->getFile($idCourse, $id);
         unlink('uploads/'.$idCourse.'/'.$file->name);
         $this->course_model->deleteFile($idCourse, $id);
@@ -368,6 +409,10 @@ class Course extends CI_Controller {
 
     public function attendanceUpdate($id, $user, $attendance, $absence)
     {
+        if($this->session->userdata('type') != 'administrador' && $this->session->userdata('type') != 'professor')
+        {
+            redirect('course');
+        }
         $course = $this->course_model->getById($id);
         
         //$url = 'http://lucasfronza.com.br/web-services/index.php/attendance';
@@ -425,7 +470,10 @@ class Course extends CI_Controller {
 
     public function scoreUpdate()
     {
-
+        if($this->session->userdata('type') != 'administrador' && $this->session->userdata('type') != 'professor')
+        {
+            redirect('course');
+        }
         $id         = $this->input->post('id');
         $scoreKey   = $this->input->post('scoreKey');
         $idCourse   = $this->input->post('idCourse');
@@ -471,6 +519,10 @@ class Course extends CI_Controller {
 
     public function addQuiz($idCourse)
     {
+        if($this->session->userdata('type') != 'administrador' && $this->session->userdata('type') != 'professor')
+        {
+            redirect('course');
+        }
         $data['idCourse'] = $idCourse;
 
         $course = $this->course_model->getById($idCourse);
@@ -483,6 +535,10 @@ class Course extends CI_Controller {
 
     public function insertQuiz()
     {
+        if($this->session->userdata('type') != 'administrador' && $this->session->userdata('type') != 'professor')
+        {
+            redirect('course');
+        }
         $idCourse   = $this->input->post('idCourse');
         $name   = $this->input->post('name');
         $question      = $this->input->post('question');

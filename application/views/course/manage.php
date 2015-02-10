@@ -4,23 +4,24 @@
                     <div class="col-lg-12">
                         <h1 class="page-header">
                             Turma
-                            <a href="<?=site_url('course/edit/'.$course->id)?>" class="btn btn-warning" >Alterar dados</a>
-							<!-- <div class="btn-group dropdown">
-								<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownTurma" data-toggle="dropdown">
-									Mais opções
-									<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownTurma">
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="<?=site_url('course/repo/'.$course->id)?>">Repositório</a></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="<?=site_url('course/users/'.$course->id)?>">Participantes</a></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="<?=site_url('course/microblog/'.$course->id)?>">Microblog</a></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="<?=site_url('course/attendanceBoard/'.$course->id)?>">Quadro de Presença</a></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="<?=site_url('course/scoreBoard/'.$course->id)?>">Quadro de Notas</a></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="<?=site_url('course/quiz/'.$course->id)?>">Quiz</a></li>
-								</ul>
-							</div> -->
-							<a href="<?=site_url('course/manage/'.$course->id.'/remove_course')?>" class="btn btn-danger" >Excluir turma</a>
-			                
+                            <?php if($this->session->userdata('type') == 'administrador' || $this->session->userdata('type') == 'professor'): ?>
+	                            <a href="<?=site_url('course/edit/'.$course->id)?>" class="btn btn-warning" >Alterar dados</a>
+								<!-- <div class="btn-group dropdown">
+									<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownTurma" data-toggle="dropdown">
+										Mais opções
+										<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownTurma">
+									<li role="presentation"><a role="menuitem" tabindex="-1" href="<?=site_url('course/repo/'.$course->id)?>">Repositório</a></li>
+									<li role="presentation"><a role="menuitem" tabindex="-1" href="<?=site_url('course/users/'.$course->id)?>">Participantes</a></li>
+									<li role="presentation"><a role="menuitem" tabindex="-1" href="<?=site_url('course/microblog/'.$course->id)?>">Microblog</a></li>
+									<li role="presentation"><a role="menuitem" tabindex="-1" href="<?=site_url('course/attendanceBoard/'.$course->id)?>">Quadro de Presença</a></li>
+									<li role="presentation"><a role="menuitem" tabindex="-1" href="<?=site_url('course/scoreBoard/'.$course->id)?>">Quadro de Notas</a></li>
+									<li role="presentation"><a role="menuitem" tabindex="-1" href="<?=site_url('course/quiz/'.$course->id)?>">Quiz</a></li>
+									</ul>
+								</div> -->
+								<a href="<?=site_url('course/manage/'.$course->id.'/remove_course')?>" class="btn btn-danger" >Excluir turma</a>
+			                <?php endif; ?>
                         </h1>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -59,31 +60,32 @@
 							</tr>
                         </table>
                     </div>
-                    <h2> Adicionar participantes</h2>
-                    <hr>
+                    <?php if($this->session->userdata('type') == 'administrador' || $this->session->userdata('type') == 'professor'): ?>
+	                    <h2> Adicionar participantes</h2>
+	                    <hr>
 
-                    <div class="panel panel-default">
-						<div class="panel-body">
-							<form action="<?=site_url('course/usersSearch/'.$course->id)?>" method="post" role="form" id="form-course">
-								<div class="form-group" id="groupName">
-									<label>Nome</label>
-									<input type="text" class="form-control" id="name" name="name">
-								</div>
+	                    <div class="panel panel-default">
+							<div class="panel-body">
+								<form action="<?=site_url('course/usersSearch/'.$course->id)?>" method="post" role="form" id="form-course">
+									<div class="form-group" id="groupName">
+										<label>Nome</label>
+										<input type="text" class="form-control" id="name" name="name">
+									</div>
 
-								<div class="form-group" id="groupSurname">
-									<label>Sobrenome</label>
-									<input type="text" class="form-control" id="surname" name="surname">
-								</div>
+									<div class="form-group" id="groupSurname">
+										<label>Sobrenome</label>
+										<input type="text" class="form-control" id="surname" name="surname">
+									</div>
 
-								<hr>
-								<div class="form-group">
-									<button type="submit" class="btn btn-primary">Buscar</button>
-									<a href="<?=site_url('course/users/'.$course->id)?>" class="btn btn-default">Visualizar todos</a>
-								</div>
-							</form>
+									<hr>
+									<div class="form-group">
+										<button type="submit" class="btn btn-primary">Buscar</button>
+										<a href="<?=site_url('course/users/'.$course->id)?>" class="btn btn-default">Visualizar todos</a>
+									</div>
+								</form>
+							</div>
 						</div>
-					</div>
-
+					<?php endif; ?>
 
                 </div>
             </div>

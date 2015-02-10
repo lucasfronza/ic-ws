@@ -16,7 +16,9 @@
                                 <tr>
                                     <th> USUÁRIO </th>
                                     <th> EMAIL </th>
-                                    <th width="20%"> REMOVER </th>
+                                    <?php if($this->session->userdata('type') == 'administrador' || $this->session->userdata('type') == 'professor'): ?>
+                                        <th width="20%"> REMOVER </th>
+                                    <?php endif; ?>
                                 </tr>
                             </thead>
                             
@@ -27,7 +29,9 @@
                                         <a href="<?=site_url('messages/user/'.$item->idUser)?>"><i class="fa fa-envelope"></i></a>
                                         <?=$item->name?> <?=$item->surname?></td>
                                     <td><?=$item->email?></td>
-                                    <td><a class="btn btn-danger" href="<?=site_url('course/removeUser/'.$idCourse.'/'.$item->id)?>"><span class="glyphicon glyphicon-remove"></span></a></td>
+                                    <?php if($this->session->userdata('type') == 'administrador' || $this->session->userdata('type') == 'professor'): ?>
+                                        <td><a class="btn btn-danger" href="<?=site_url('course/removeUser/'.$idCourse.'/'.$item->id)?>"><span class="glyphicon glyphicon-remove"></span></a></td>
+                                    <?php endif; ?>
                                 </tr>
                                 <?php endforeach ?>
                             </tbody>

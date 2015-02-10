@@ -4,7 +4,9 @@
                     <div class="col-lg-12">
                         <h1 class="page-header">
                             Quiz
-                            <a href="<?=site_url('course/addQuiz/'.$idCourse)?>" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Novo</a>
+                            <?php if($this->session->userdata('type') == 'administrador' || $this->session->userdata('type') == 'professor'): ?>
+                                <a href="<?=site_url('course/addQuiz/'.$idCourse)?>" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Novo</a>
+                            <?php endif; ?>
                         </h1>
                     </div>
                     <!-- /.col-lg-12 -->

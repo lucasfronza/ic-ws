@@ -4,7 +4,9 @@
                     <div class="col-lg-12">
                         <h1 class="page-header">
                         	Minhas turmas
-                        	<a class='btn btn-primary' href='<?=site_url('course/create')?>'> <span class='glyphicon glyphicon-plus'></span> Nova Turma </a>
+                            <?php if($this->session->userdata('type') == 'administrador' || $this->session->userdata('type') == 'professor'): ?>
+                        	   <a class='btn btn-primary' href='<?=site_url('course/create')?>'> <span class='glyphicon glyphicon-plus'></span> Nova Turma </a>
+                            <?php endif; ?>
                         </h1>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -17,7 +19,7 @@
 						<tr>
 							<th> CÓDIGO </th> 
 							<th> NOME </th>
-							<th width="20%"> GERENCIAR </th>
+							<th width="20%"> ACESSAR </th>
 						</tr>
 					</thead>
 					
