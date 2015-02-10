@@ -26,7 +26,7 @@
 						<tr>
 							<td><?=$item->code?></td>
 							<td><?=$item->name?></td>
-							<td><a class="btn btn-primary" href='<?=site_url("course/manage/".$item->id)?>'><span class="glyphicon glyphicon-hand-up"></span></a></td>
+							<td><a class="btn btn-primary" href='<?=site_url("course/microblog/".$item->id)?>'><span class="glyphicon glyphicon-hand-up"></span></a></td>
 						</tr>
 						<?php endforeach ?>
 					</tbody>

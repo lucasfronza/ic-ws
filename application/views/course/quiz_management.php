@@ -5,7 +5,6 @@
                         <h1 class="page-header">
                             Quiz
                             <a href="<?=site_url('course/addQuiz/'.$idCourse)?>" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Novo</a>
-                            <a href="<?=site_url('course/manage/'.$idCourse)?>" class="btn btn-warning">Voltar</a>
                         </h1>
                     </div>
                     <!-- /.col-lg-12 -->

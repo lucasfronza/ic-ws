@@ -4,7 +4,6 @@
                     <div class="col-lg-12">
                         <h1 class="page-header">
                             Participantes
-                            <a href="<?=site_url('course/manage/'.$idCourse)?>" class="btn btn-warning">Voltar</a>
                         </h1>
                     </div>
                     <!-- /.col-lg-12 -->
