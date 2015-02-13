@@ -372,6 +372,7 @@ class Course extends CI_Controller {
         $obj = new stdClass();
         $obj->message = $this->input->post('message');
         $obj->idCourse = $this->input->post('idCourse');
+        $obj->parent = $this->input->post('parent');
         $obj->idUser = $this->session->userdata('id');
         $this->microblog_model->insert($obj);
         

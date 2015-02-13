@@ -22,7 +22,7 @@ class Microblog_model extends CI_Model {
         $this->db->select('microblog.*, user.name, user.surname');
         $this->db->from('microblog');
         $this->db->join('user', 'microblog.idUser = user.id');
-        return $this->db->order_by('microblog.id','DESC')->where('idCourse', $idCourse)->get()->result();
+        return $this->db->where('idCourse', $idCourse)->get()->result();
     }
   
 }

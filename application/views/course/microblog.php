@@ -14,6 +14,7 @@
                         <div class="input-group">
                             <input name="message" type="text" class="form-control input-sm" placeholder="Criar novo tópico...">
                             <input name="idCourse" type="hidden" value="<?=$idCourse?>">
+                            <input name="parent" type="hidden" value="0">
                             <span class="input-group-btn">
                                 <button type="submit" class="btn btn-warning btn-sm" id="btn-chat">
                                     Enviar
@@ -29,45 +30,44 @@
 						<?php else: ?>
                             <div class="panel-group" id="accordion">
                                 <?php $index = 1; ?>
-                                <?php foreach ($messages as $item): ?>
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h4 class="panel-title">
-                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?=$index?>" class="collapsed">
-                                                    <i class="fa fa-comment fa-fw"></i> <?=$item->message?>
-                                                    <span class="pull-right text-muted small"><em>por <?=$item->name.' '.$item->surname?></em></span>
-                                                </a>
-                                            </h4>
-                                        </div>
-                                        <div id="collapse<?=$index?>" class="panel-collapse collapse" style="height: 0px;">
-                                            <div class="panel-body">
-                                                <div class="list-group-item">
-                                                    <i class="fa fa-comment fa-fw"></i> Lorem ipsum
-                                                    <span class="pull-right text-muted small"><em>por <?=$item->name.' '.$item->surname?></em></span>
+                                <?php foreach ($messages as $topic): ?>
+                                    <?php if ($topic->parent == 0): ?>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?=$index?>" class="collapsed">
+                                                        <i class="fa fa-comment fa-fw"></i> <?=$topic->message?>
+                                                        <span class="pull-right text-muted small"><em>por <?=$topic->name.' '.$topic->surname?></em></span>
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapse<?=$index?>" class="panel-collapse collapse" style="height: 0px;">
+                                                <div class="panel-body">
+                                                    <?php foreach ($messages as $item): ?>
+                                                        <?php if ($item->parent == $topic->id): ?>
+                                                            <div class="list-group-item">
+                                                                <?=$item->message?>
+                                                                <span class="pull-right text-muted small"><em>por <?=$item->name.' '.$item->surname?></em></span>
+                                                            </div>
+                                                        <?php endif ?>
+                                                    <?php endforeach ?>
+                                                    <p></p>
+                                                    <form action="<?=site_url('course/microblog_insert')?>" method="post">
+                                                        <div class="input-group">
+                                                            <input name="message" type="text" class="form-control input-sm" placeholder="Escreva sua resposta aqui...">
+                                                            <input name="idCourse" type="hidden" value="<?=$idCourse?>">
+                                                            <input name="parent" type="hidden" value="<?=$topic->id?>">
+                                                            <span class="input-group-btn">
+                                                                <button type="submit" class="btn btn-warning btn-sm" id="btn-chat">
+                                                                    Enviar
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </form>
                                                 </div>
-                                                <div class="list-group-item">
-                                                    <i class="fa fa-comment fa-fw"></i> Lorem ipsum
-                                                    <span class="pull-right text-muted small"><em>por <?=$item->name.' '.$item->surname?></em></span>
-                                                </div>
-                                                <form action="<?=site_url('course/microblog_insert')?>" method="post">
-                                                    <div class="input-group">
-                                                        <input name="message" type="text" class="form-control input-sm" placeholder="Escreva sua resposta aqui...">
-                                                        <input name="idCourse" type="hidden" value="<?=$idCourse?>">
-                                                        <span class="input-group-btn">
-                                                            <button type="submit" class="btn btn-warning btn-sm" id="btn-chat">
-                                                                Enviar
-                                                            </button>
-                                                        </span>
-                                                    </div>
-                                                </form>
                                             </div>
                                         </div>
-                                    </div>
-    								<!-- <div class="list-group-item">
-    	                                <i class="fa fa-comment fa-fw"></i> <?=$item->message?>
-    	                                <span class="pull-right text-muted small"><em>por <?=$item->name.' '.$item->surname?></em>
-    	                                </span>
-    	                            </div> -->
+                                    <?php endif ?>
                                     <?php $index = $index + 1; ?>
     							<?php endforeach ?>
                             </div>
