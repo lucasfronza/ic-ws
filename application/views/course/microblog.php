@@ -12,7 +12,7 @@
                 <div class="col-lg-8">
 	                <form action="<?=site_url('course/microblog_insert')?>" method="post">
                         <div class="input-group">
-                            <input name="message" type="text" class="form-control input-sm" placeholder="Escreva sua mensagem aqui...">
+                            <input name="message" type="text" class="form-control input-sm" placeholder="Criar novo tópico...">
                             <input name="idCourse" type="hidden" value="<?=$idCourse?>">
                             <span class="input-group-btn">
                                 <button type="submit" class="btn btn-warning btn-sm" id="btn-chat">
@@ -27,15 +27,50 @@
                     	<?php if (empty($messages)): ?>
 							<p style="text-align:center;">Nenhuma postagem.</p>
 						<?php else: ?>
-
-                        	<?php foreach ($messages as $item): ?>
-								<div class="list-group-item">
-	                                <i class="fa fa-comment fa-fw"></i> <?=$item->message?>
-	                                <span class="pull-right text-muted small"><em>por <?=$item->name.' '.$item->surname?></em>
-	                                </span>
-	                            </div>
-
-							<?php endforeach ?>
+                            <div class="panel-group" id="accordion">
+                                <?php $index = 1; ?>
+                                <?php foreach ($messages as $item): ?>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?=$index?>" class="collapsed">
+                                                    <i class="fa fa-comment fa-fw"></i> <?=$item->message?>
+                                                    <span class="pull-right text-muted small"><em>por <?=$item->name.' '.$item->surname?></em></span>
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapse<?=$index?>" class="panel-collapse collapse" style="height: 0px;">
+                                            <div class="panel-body">
+                                                <div class="list-group-item">
+                                                    <i class="fa fa-comment fa-fw"></i> Lorem ipsum
+                                                    <span class="pull-right text-muted small"><em>por <?=$item->name.' '.$item->surname?></em></span>
+                                                </div>
+                                                <div class="list-group-item">
+                                                    <i class="fa fa-comment fa-fw"></i> Lorem ipsum
+                                                    <span class="pull-right text-muted small"><em>por <?=$item->name.' '.$item->surname?></em></span>
+                                                </div>
+                                                <form action="<?=site_url('course/microblog_insert')?>" method="post">
+                                                    <div class="input-group">
+                                                        <input name="message" type="text" class="form-control input-sm" placeholder="Escreva sua resposta aqui...">
+                                                        <input name="idCourse" type="hidden" value="<?=$idCourse?>">
+                                                        <span class="input-group-btn">
+                                                            <button type="submit" class="btn btn-warning btn-sm" id="btn-chat">
+                                                                Enviar
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+    								<!-- <div class="list-group-item">
+    	                                <i class="fa fa-comment fa-fw"></i> <?=$item->message?>
+    	                                <span class="pull-right text-muted small"><em>por <?=$item->name.' '.$item->surname?></em>
+    	                                </span>
+    	                            </div> -->
+                                    <?php $index = $index + 1; ?>
+    							<?php endforeach ?>
+                            </div>
 						<?php endif; ?>
                     </div>
                 </div>
