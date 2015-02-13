@@ -16,9 +16,47 @@
                             <a href="<?=site_url('course/quiz/'.$idCourse)?>" class="btn btn-warning">Voltar</a>
                         <?php elseif($message == 'wrong'): ?>
                             Resposta incorreta. Tente novamente!
-                            <a href="<?=site_url('course/quizQuestion/'.$idCourse.'/'.$idQuiz)?>" class="btn btn-warning">Voltar</a>
+                            <a href="<?=site_url('course/quizQuestion/'.$idCourse.'/'.$idQuiz)?>" class="btn btn-warning">Tentar novamente</a>
                         <?php endif; ?>
                     </legend>
+                    <?php if($message == 'correct'): ?>
+                        <h4>Comentário:</h4>
+                        <p class="text-justify"><?=$quiz->comment?></p>
+                    <?php elseif($message == 'wrong'): ?>
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed">Ver resposta e comentário</a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse" style="height: 0px;">
+                                <div class="panel-body">
+                                    <h4>Resposta correta:</h4>
+                                    <p class="text-justify"><?php switch ($quiz->correctAnswer) {
+                                        case '1':
+                                            echo $quiz->alternative1;
+                                            break;
+                                        case '2':
+                                            echo $quiz->alternative2;
+                                            break;
+                                        case '3':
+                                            echo $quiz->alternative3;
+                                            break;
+                                        case '4':
+                                            echo $quiz->alternative4;
+                                            break;
+                                        case '5':
+                                            echo $quiz->alternative5;
+                                            break;
+                                        default:
+                                            break;
+                                    } ?></p>
+                                    <h4>Comentário:</h4>
+                                    <p class="text-justify"><?=$quiz->comment?></p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
             <!-- /.container-fluid -->

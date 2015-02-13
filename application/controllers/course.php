@@ -542,6 +542,7 @@ class Course extends CI_Controller {
         $idCourse   = $this->input->post('idCourse');
         $name   = $this->input->post('name');
         $question      = $this->input->post('question');
+        $comment       = $this->input->post('comment');
         $alternative1  = $this->input->post('alternative1');
         $alternative2  = $this->input->post('alternative2');
         $alternative3  = $this->input->post('alternative3');
@@ -558,6 +559,7 @@ class Course extends CI_Controller {
             CURLOPT_POST => 1,
             CURLOPT_POSTFIELDS => array(
                 'question' => $question,
+                'comment' => $comment,
                 'alternative1'  => $alternative1,
                 'alternative2'  => $alternative2,
                 'alternative3'  => $alternative3,
@@ -623,8 +625,21 @@ class Course extends CI_Controller {
             $data['message'] = 'wrong';
         }
 
+        $quiz = $this->course_model->getQuiz($idQuiz);
+
+        $url = 'http://localhost/web-services/quiz';
+        $params = array('key' => $quiz->quizKey);
+        $url .= '?' . http_build_query($params);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept: application/json"));
+        $json = curl_exec($ch);
+        curl_close($ch);
+
         $data['idCourse'] = $idCourse;
         $data['idQuiz'] = $idQuiz;
+        $data['quiz'] = json_decode($json);
 
         $course = $this->course_model->getById($idCourse);
         $header_menu['course'] = $course;

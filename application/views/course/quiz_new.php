@@ -56,6 +56,10 @@
                                         <option value="5">E</option>
                                     </select>
                                 </div>
+                                <div class="form-group" id="groupComment">
+                                    <label>Comentário da resposta</label>
+                                    <textarea class="form-control" rows="3" id="comment" name="comment"></textarea>
+                                </div>
                                 <hr>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Criar</button>
