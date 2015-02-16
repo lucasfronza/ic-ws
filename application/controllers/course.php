@@ -310,7 +310,7 @@ class Course extends CI_Controller {
         }
         
         $config['upload_path'] = './uploads/'.$idCourse.'/';
-        $config['allowed_types'] = 'gif|jpg|png|txt|pdf|rar|zip|doc|docx|odt|xls|xlsx|ppt|pptx|sldx';
+        $config['allowed_types'] = 'gif|jpg|png|txt|pdf|rar|zip|doc|docx|odt|xls|xlsx|ppt|pptx|sldx|ods';
         
 		$this->load->library('upload', $config);
 
@@ -334,9 +334,38 @@ class Course extends CI_Controller {
             $obj->size = $data['upload_data']['file_size'];
             $this->course_model->insertFile($obj);
             
-            //var_dump($data['upload_data']);
+            // Envio de email para os participantes avisando que o novo arquivo foi inserido
+            require_once('application/config/gmail.php');
+            $course = $this->course_model->getById($idCourse);
+            $users = $this->course_model->getLinkedUsers($idCourse);
+            $config = Array(
+                'protocol' => 'smtp',
+                'smtp_host' => 'ssl://smtp.googlemail.com',
+                'smtp_port' => 465,
+                'smtp_user' => $emailgmail,
+                'smtp_pass' => $senhagmail,
+                'smtp_timeout' => '4',
+                'mailtype'  => 'text',
+                'charset'   => 'utf-8'
+            );
+
+            $this->load->library('email', $config);
+            $this->email->set_newline("\r\n");
+
+            $this->email->from('lbfronza@gmail.com', 'ICMC MLE');
+            $this->email->subject('Novo arquivo no Repositório');
+            $this->email->message(
+                'O arquivo '.$data['upload_data']['file_name'].' foi adicionado no Repositório da turma '.$course->name.
+                ' por '.$this->session->userdata("name").' '.$this->session->userdata("surname").'.'
+                );
+            foreach ($users as $user)
+            {
+                $this->email->to($user->email);
+                $this->email->send();
+            }
+
             redirect('course/repo/'.$idCourse);
-		}
+        }
         
     }
 
