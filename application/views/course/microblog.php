@@ -32,12 +32,12 @@
                                 <?php $index = 1; ?>
                                 <?php foreach ($messages as $topic): ?>
                                     <?php if ($topic->parent == 0): ?>
-                                        <div class="panel panel-default">
+                                        <div class="panel panel-success">
                                             <div class="panel-heading">
                                                 <h4 class="panel-title">
                                                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?=$index?>" class="collapsed">
-                                                        <i class="fa fa-comment fa-fw"></i> <?=$topic->message?>
-                                                        <span class="pull-right text-muted small"><em>por <?=$topic->name.' '.$topic->surname?></em></span>
+                                                        <?=$topic->message?>
+                                                        <span class="pull-right text-muted small"><em><i class="fa fa-comment"></i> <?=$topic->name.' '.$topic->surname?></em></span>
                                                     </a>
                                                 </h4>
                                             </div>
@@ -47,7 +47,7 @@
                                                         <?php if ($item->parent == $topic->id): ?>
                                                             <div class="list-group-item">
                                                                 <?=$item->message?>
-                                                                <span class="pull-right text-muted small"><em>por <?=$item->name.' '.$item->surname?></em></span>
+                                                                <span class="pull-right text-muted small"><em><i class="fa fa-comment"></i> <?=$item->name.' '.$item->surname?></em></span>
                                                             </div>
                                                         <?php endif ?>
                                                     <?php endforeach ?>
