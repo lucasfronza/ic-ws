@@ -411,7 +411,43 @@ class Course extends CI_Controller {
         $obj->parent = $this->input->post('parent');
         $obj->idUser = $this->session->userdata('id');
         $this->microblog_model->insert($obj);
-        
+
+        // Envio de email para os participantes avisando que um novo tópico foi criado
+        if($obj->parent == 0)
+        {
+            require_once('application/config/gmail.php');
+            $course = $this->course_model->getById($obj->idCourse);
+            $users = $this->course_model->getLinkedUsers($obj->idCourse);
+            $config = Array(
+                'protocol' => 'smtp',
+                'smtp_host' => 'ssl://smtp.googlemail.com',
+                'smtp_port' => 465,
+                'smtp_user' => $emailgmail,
+                'smtp_pass' => $senhagmail,
+                'smtp_timeout' => '4',
+                'mailtype'  => 'text',
+                'charset'   => 'utf-8'
+            );
+
+            $this->load->library('email', $config);
+            $this->email->set_newline("\r\n");
+
+            $this->email->from('lbfronza@gmail.com', 'ICMC MLE');
+            $this->email->subject('Novo tópico no Microblog');
+            $this->email->message(
+                'Um novo tópico chamado "'.$obj->message.'" foi criado no Microblog da turma '.$course->name.
+                ' por '.$this->session->userdata("name").' '.$this->session->userdata("surname").'.'
+                );
+            foreach ($users as $user)
+            {
+                if($user->notifications == 1)
+                {
+                    $this->email->to($user->email);
+                    $this->email->send();
+                }
+            }
+        }
+
         redirect('course/microblog/'.$obj->idCourse);
     }
     # Microblog - fim
