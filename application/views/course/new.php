@@ -25,6 +25,16 @@
                                     <input type="text" class="form-control" id="code" name="code">
                                 </div>
 
+                                <div class="form-group" id="groupTeacher">
+                                    <label>Professor(a)</label>
+                                    <input type="text" class="form-control" id="teacher" name="teacher">
+                                </div>
+
+                                <div class="form-group" id="groupPlace">
+                                    <label>Local</label>
+                                    <input type="text" class="form-control" id="place" name="place">
+                                </div>
+
                                 <div class="form-group" id="groupCredits">
                                     <label>Créditos</label>
                                     <input type="text" class="form-control" id="credits" name="credits">

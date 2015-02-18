@@ -26,6 +26,16 @@
                                     <input type="text" class="form-control" id="code" name="code" value="<?=$course->code?>">
                                 </div>
 
+                                <div class="form-group" id="groupTeacher">
+                                    <label>Professor(a)</label>
+                                    <input type="text" class="form-control" id="teacher" name="teacher" value="<?=$course->teacher?>">
+                                </div>
+
+                                <div class="form-group" id="groupPlace">
+                                    <label>Local</label>
+                                    <input type="text" class="form-control" id="place" name="place" value="<?=$course->place?>">
+                                </div>
+
                                 <div class="form-group" id="groupCredits">
                                     <label>Créditos</label>
                                     <input type="text" class="form-control" id="credits" name="credits" value="<?=$course->credits?>">

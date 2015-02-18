@@ -47,6 +47,14 @@
 								<td> <?php echo $course->code; ?> </td>
 							</tr>
 							<tr>
+								<th style="text-align:left;"> Professor(a) </th>
+								<td> <?php echo $course->teacher; ?> </td>
+							</tr>
+							<tr>
+								<th style="text-align:left;"> Local </th>
+								<td> <?php echo $course->place; ?> </td>
+							</tr>
+							<tr>
 								<th style="text-align:left;"> Créditos </th>
 								<td> <?php echo $course->credits; ?> </td>
 							</tr>

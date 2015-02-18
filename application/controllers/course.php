@@ -89,6 +89,8 @@ class Course extends CI_Controller {
         $course = new stdClass();
         $course->name = $this->input->post('name');
         $course->code = $this->input->post('code');
+        $course->teacher = $this->input->post('teacher');
+        $course->place = $this->input->post('place');
         $course->credits = $this->input->post('credits');
         $course->time = $this->input->post('time');
         $course->description = $this->input->post('description');
@@ -137,6 +139,8 @@ class Course extends CI_Controller {
         $course = new stdClass();
         $course->name = $this->input->post('name');
         $course->code = $this->input->post('code');
+        $course->teacher = $this->input->post('teacher');
+        $course->place = $this->input->post('place');
         $course->credits = $this->input->post('credits');
         $course->time = $this->input->post('time');
         $course->description = $this->input->post('description');
