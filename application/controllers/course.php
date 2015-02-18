@@ -364,8 +364,11 @@ class Course extends CI_Controller {
                 );
             foreach ($users as $user)
             {
-                $this->email->to($user->email);
-                $this->email->send();
+                if($user->notifications == 1)
+                {
+                    $this->email->to($user->email);
+                    $this->email->send();
+                }
             }
 
             redirect('course/repo/'.$idCourse);

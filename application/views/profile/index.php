@@ -8,6 +8,10 @@
                         		<i class="fa fa-wrench fa-fw"></i>
                         		Alterar dados
                         	</a>
+                            <a href="<?=site_url('profile/configurations')?>" class="btn btn-warning" >
+                                <i class="fa fa-cog fa-fw"></i>
+                                Configurações
+                            </a>
                         </h1>
                     </div>
                     <!-- /.col-lg-12 -->

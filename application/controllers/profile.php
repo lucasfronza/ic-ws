@@ -61,7 +61,27 @@ class Profile extends CI_Controller {
         $this->user_model->updateUser($this->session->userdata('id'), $data);
         redirect('profile/index');
     }
-    
+
+    public function configurations()
+    {
+        $header_menu['title'] = 'PERFIL';
+        $header_menu['menu'] = 'PERFIL';
+        $this->load->view('main/header_menu', $header_menu);
+
+        $data['user'] = $this->user_model->getById($this->session->userdata('id'));
+        $this->load->view('profile/configurations', $data);
+    }
+
+    public function configurationsUpdate()
+    {
+        $data = array(
+            'notifications' => $this->input->post('notifications')
+        );
+
+        $this->user_model->updateUser($this->session->userdata('id'), $data);
+        redirect('profile/index');
+    }
+
     public function password_recovery()
     {
         $header_menu['title'] = 'LOGIN';
