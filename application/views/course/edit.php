@@ -1,7 +1,10 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Turma</h1>
+                    <h1 class="page-header">
+                        Turma
+                        <a href="<?=site_url('course/manage/'.$course->id)?>" class="btn btn-warning">Voltar</a>
+                    </h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
