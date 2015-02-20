@@ -450,6 +450,25 @@ class Course extends CI_Controller {
 
         redirect('course/microblog/'.$obj->idCourse);
     }
+
+    public function microblogUpvote($idCourse, $idTopic)
+    {
+        $idUser = $this->session->userdata('id');
+
+        if($this->microblog_model->checkUpvote($idTopic, $idUser))
+        {
+            $this->microblog_model->deleteUpvote($idTopic, $idUser);
+        }
+        else
+        {
+            $obj = new stdClass();
+            $obj->idTopic = $idTopic;
+            $obj->idUser = $idUser;
+            $this->microblog_model->insertUpvote($obj);
+        }
+
+        redirect('course/microblog/'.$idCourse);
+    }
     # Microblog - fim
 
     # Quadro de Presença - início
