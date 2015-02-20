@@ -272,6 +272,13 @@
                                     <i class="fa fa-university fa-fw"></i> TURMAS
                                 </a>
                             </li>
+                            <?php if($this->session->userdata('type') == 'administrador' || $this->session->userdata('type') == 'professor'): ?>
+                            <li>
+                                <a href="<?=site_url("users")?>" <?php if($menu == 'USUÁRIOS') echo 'class="active"'; ?>>
+                                    <i class="fa fa-users fa-fw"></i> USUÁRIOS
+                                </a>
+                            </li>
+                            <?php endif; ?>
                         <?php else: ?>
                             <li>
                                 <a href="<?=site_url("signup")?>" <?php if($menu == 'CADASTRO') echo 'class="active"'; ?>>
