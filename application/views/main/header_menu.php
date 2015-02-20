@@ -250,7 +250,11 @@
                             <li>
                                 <a href="#"><i class="fa fa-sitemap fa-fw"></i> <?=$course->name?><span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
+                                    <?php if($this->session->userdata('type') == 'administrador' || $this->session->userdata('type') == 'professor'): ?>
                                     <li><a href="<?=site_url('course/manage/'.$course->id)?>"><i class="fa fa-pencil fa-fw"></i> Gerência</a></li>
+                                    <?php else: ?>
+                                    <li><a href="<?=site_url('course/manage/'.$course->id)?>"><i class="fa fa-pencil fa-fw"></i> Turma</a></li>
+                                    <?php endif; ?>
                                     <li><a href="<?=site_url('course/microblog/'.$course->id)?>"><i class="fa fa-comments fa-fw"></i> Microblog</a></li>
                                     <li><a href="<?=site_url('course/users/'.$course->id)?>"><i class="fa fa-users fa-fw"></i> Participantes</a></li>
                                     <li><a href="<?=site_url('course/scoreBoard/'.$course->id)?>"><i class="fa fa-table fa-fw"></i> Quadro de Notas</a></li>
