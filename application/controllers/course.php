@@ -392,6 +392,7 @@ class Course extends CI_Controller {
     # Microblog - início
     public function microblog($idCourse)
     {
+        $data["topics"] = $this->microblog_model->getOrderedByUpvotes($idCourse);
         $data["messages"] = $this->microblog_model->get($idCourse);
         $data["idCourse"] = $idCourse;
 

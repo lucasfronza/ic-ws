@@ -17,12 +17,20 @@ class Microblog_model extends CI_Model {
         return $this->db->where('id', $id)->delete('microblog');
     }
 
-    public function get($idCourse)
+    public function getOrderedByUpvotes($idCourse)
     {
         $this->db->select('microblog.*, user.name, user.surname');
         $this->db->from('microblog');
         $this->db->join('user', 'microblog.idUser = user.id');
         return $this->db->order_by('upvotes', 'desc')->where('idCourse', $idCourse)->get()->result();
+    }
+
+    public function get($idCourse)
+    {
+        $this->db->select('microblog.*, user.name, user.surname');
+        $this->db->from('microblog');
+        $this->db->join('user', 'microblog.idUser = user.id');
+        return $this->db->where('idCourse', $idCourse)->get()->result();
     }
 
     public function insertUpvote($obj)

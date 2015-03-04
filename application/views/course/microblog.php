@@ -26,12 +26,12 @@
                     <hr>
 
                     <div class="list-group">
-                    	<?php if (empty($messages)): ?>
+                    	<?php if (empty($topics)): ?>
 							<p style="text-align:center;">Nenhuma postagem.</p>
 						<?php else: ?>
                             <div class="panel-group" id="accordion">
                                 <?php $index = 1; ?>
-                                <?php foreach ($messages as $topic): ?>
+                                <?php foreach ($topics as $topic): ?>
                                     <?php if ($topic->parent == 0): ?>
                                         <div class="panel panel-success">
                                             <div class="panel-heading">
@@ -51,6 +51,9 @@
                                                         <?php if ($item->parent == $topic->id): ?>
                                                             <div class="list-group-item">
                                                                 <?=$item->message?>
+                                                                <span class="pull-right text-muted" style="margin-left:15px">
+                                                                    <a href="<?=site_url('course/microblogUpvote/'.$idCourse.'/'.$item->id)?>"><i class="fa fa-thumbs-o-up"></i></a> <span class="badge"><?=$item->upvotes?></span>
+                                                                </span>
                                                                 <span class="pull-right text-muted small"><em><i class="fa fa-comment"></i> <?=$item->name.' '.$item->surname?></em></span>
                                                             </div>
                                                         <?php endif ?>
