@@ -249,7 +249,7 @@
                             <?php if (isset($course)): ?>
                             <li>
                                 <a href="#"><i class="fa fa-sitemap fa-fw"></i> <?=$course->name?><span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
+                                <ul class="nav nav-second-level collapse in">
                                     <?php if($this->session->userdata('type') == 'administrador' || $this->session->userdata('type') == 'professor'): ?>
                                     <li><a href="<?=site_url('course/manage/'.$course->id)?>"><i class="fa fa-pencil fa-fw"></i> Gerência</a></li>
                                     <?php else: ?>
