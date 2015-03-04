@@ -53,5 +53,10 @@ class Microblog_model extends CI_Model {
         $this->db->where('id', $idTopic)->update('microblog', $topic);
         return $this->db->where('idTopic', $idTopic)->where('idUser', $idUser)->delete('microblogupvotes');
     }
+
+    public function deleteMessage($idTopic, $idCourse)
+    {
+        return $this->db->where('id', $idTopic)->where('idCourse', $idCourse)->delete('microblog');
+    }
   
 }

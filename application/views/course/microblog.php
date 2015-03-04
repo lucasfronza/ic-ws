@@ -39,6 +39,11 @@
                                                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?=$index?>" class="collapsed">
                                                         <?=$topic->message?>
                                                     </a>
+                                                    <?php if($this->session->userdata('id') == $topic->idUser ||$this->session->userdata('type') == 'administrador' || $this->session->userdata('type') == 'professor'): ?>
+                                                    <span class="pull-right text-muted" style="margin-left:15px">
+                                                        <a href="<?=site_url('course/microblogRemoveMessage/'.$idCourse.'/'.$topic->id)?>"><i class="fa fa-trash-o"></i></a>
+                                                    </span>
+                                                    <?php endif; ?>
                                                     <span class="pull-right text-muted" style="margin-left:15px">
                                                         <a href="<?=site_url('course/microblogUpvote/'.$idCourse.'/'.$topic->id)?>"><i class="fa fa-thumbs-o-up"></i></a> <span class="badge"><?=$topic->upvotes?></span>
                                                     </span>
@@ -51,6 +56,11 @@
                                                         <?php if ($item->parent == $topic->id): ?>
                                                             <div class="list-group-item">
                                                                 <?=$item->message?>
+                                                                <?php if($this->session->userdata('id') == $item->idUser || $this->session->userdata('type') == 'administrador' || $this->session->userdata('type') == 'professor'): ?>
+                                                                <span class="pull-right text-muted" style="margin-left:15px">
+                                                                    <a href="<?=site_url('course/microblogRemoveMessage/'.$idCourse.'/'.$item->id)?>"><i class="fa fa-trash-o"></i></a>
+                                                                </span>
+                                                                <?php endif; ?>
                                                                 <span class="pull-right text-muted" style="margin-left:15px">
                                                                     <a href="<?=site_url('course/microblogUpvote/'.$idCourse.'/'.$item->id)?>"><i class="fa fa-thumbs-o-up"></i></a> <span class="badge"><?=$item->upvotes?></span>
                                                                 </span>

@@ -470,6 +470,20 @@ class Course extends CI_Controller {
 
         redirect('course/microblog/'.$idCourse);
     }
+
+    public function microblogRemoveMessage($idCourse, $idTopic)
+    {
+        $idUser = $this->session->userdata('id');
+
+        if($this->session->userdata('id') != $idUser && $this->session->userdata('type') != 'administrador' && $this->session->userdata('type') != 'professor')
+        {
+            redirect('course/microblog/'.$idCourse);
+        }
+
+        $this->microblog_model->deleteMessage($idTopic, $idCourse);
+
+        redirect('course/microblog/'.$idCourse);
+    }
     # Microblog - fim
 
     # Quadro de Presença - início
