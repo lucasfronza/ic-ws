@@ -315,7 +315,8 @@ class Course extends CI_Controller {
         
         $config['upload_path'] = './uploads/'.$idCourse.'/';
         $config['allowed_types'] = 'gif|jpg|png|txt|pdf|rar|zip|doc|docx|odt|xls|xlsx|ppt|pptx|sldx|ods';
-        
+        $config['file_name'] = url_title(pathinfo($_FILES['userfile']['name'])['filename']);
+
 		$this->load->library('upload', $config);
 
 		if ( ! $this->upload->do_upload())
@@ -327,11 +328,11 @@ class Course extends CI_Controller {
 		else
 		{
 			$data['upload_data'] = $this->upload->data();
-            
+
             $obj = new stdClass();
             $obj->idCourse = $idCourse;
             $obj->name = $data['upload_data']['file_name'];
-            $obj->path = base_url('uploads/'.$idCourse.'/'.$data['upload_data']['file_name']);
+            $obj->path = base_url('uploads/'.$idCourse).'/'.$data['upload_data']['file_name'];
             $obj->uploadedBy = $this->session->userdata("name")." ".$this->session->userdata("surname");
             date_default_timezone_set("America/Sao_Paulo");
             $obj->modified = date("Y-m-d H:i:s");
