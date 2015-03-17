@@ -315,7 +315,8 @@ class Course extends CI_Controller {
         
         $config['upload_path'] = './uploads/'.$idCourse.'/';
         $config['allowed_types'] = 'gif|jpg|png|txt|pdf|rar|zip|doc|docx|odt|xls|xlsx|ppt|pptx|sldx|ods';
-        $config['file_name'] = url_title(pathinfo($_FILES['userfile']['name'])['filename']);
+        $path_info = pathinfo($_FILES['userfile']['name']);
+        $config['file_name'] = url_title($path_info['filename']);
 
 		$this->load->library('upload', $config);
 
