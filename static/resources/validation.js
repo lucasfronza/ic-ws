@@ -83,6 +83,10 @@ function validate_profileupdate()
     var email = $("#form-profileupdate input[name=email]").val();
 	$("#form-profileupdate #groupEmail").removeClass('has-error');
 	$("#form-profileupdate #errorEmail").html('');
+
+    var emailChecker = $("#form-profileupdate input[name=emailChecker]").val();
+    $("#form-profileupdate #groupEmailChecker").removeClass('has-error');
+    $("#form-profileupdate #errorEmailChecker").html('');
 	
     if(name.length == 0)
 	{
@@ -113,7 +117,16 @@ function validate_profileupdate()
 		$("#form-profileupdate #errorEmail").html('Campo Obrigat&oacute;rio.');			
 		erro = true;
 	}
-    
+
+    if(email != emailChecker)
+    {
+        $("#form-profileupdate #groupEmail").addClass('has-error');
+        
+        $("#form-profileupdate #groupEmailChecker").addClass('has-error');
+        $("#form-profileupdate #errorEmailChecker").html('Emails não conferem.');
+        erro = true;
+    }
+
 	return !erro;
 }
 

@@ -39,8 +39,14 @@
                                         
                                 <div class="form-group" id="groupEmail">
                                     <label>Email</label>
-                                    <input type="text" class="form-control" id="email" name="email" value="<?= $user->email; ?>" readonly>
+                                    <input type="email" class="form-control" id="email" name="email" value="<?= $user->email; ?>">
                                     <p id="errorEmail" class="help-block"></p>
+                                </div>
+
+                                <div class="form-group" id="groupEmailChecker">
+                                    <label>Repetir email</label>
+                                    <input type="email" class="form-control" id="emailChecker" name="emailChecker" value="<?= $user->email; ?>">
+                                    <p id="errorEmailChecker" class="help-block"></p>
                                 </div>
                                         
                                 <div class="form-group" id="groupPhone">
