@@ -41,8 +41,14 @@
                                         
                                 <div class="form-group" id="groupEmail">
                                     <label>Email</label>
-                                    <input type="text" class="form-control" id="email" name="email">
+                                    <input type="email" class="form-control" id="email" name="email">
                                     <p id="errorEmail" class="help-block"></p>
+                                </div>
+
+                                <div class="form-group" id="groupEmailChecker">
+                                    <label>Repetir email</label>
+                                    <input type="email" class="form-control" id="emailChecker" name="emailChecker">
+                                    <p id="errorEmailChecker" class="help-block"></p>
                                 </div>
                                         
                                 <div class="form-group" id="groupPhone">

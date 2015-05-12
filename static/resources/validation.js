@@ -17,6 +17,10 @@ function validate_signup()
     var email = $("#form-signup input[name=email]").val();
 	$("#form-signup #groupEmail").removeClass('has-error');
 	$("#form-signup #errorEmail").html('');
+
+    var emailChecker = $("#form-signup input[name=emailChecker]").val();
+    $("#form-signup #groupEmailChecker").removeClass('has-error');
+    $("#form-signup #errorEmailChecker").html('');
 	
     if(name.length == 0)
 	{
@@ -47,6 +51,15 @@ function validate_signup()
 		$("#form-signup #errorEmail").html('Campo Obrigat&oacute;rio.');			
 		erro = true;
 	}
+
+    if(email != emailChecker)
+    {
+        $("#form-signup #groupEmail").addClass('has-error');
+        
+        $("#form-signup #groupEmailChecker").addClass('has-error');
+        $("#form-signup #errorEmailChecker").html('Emails não conferem.');
+        erro = true;
+    }
     
 	return !erro;
 }
