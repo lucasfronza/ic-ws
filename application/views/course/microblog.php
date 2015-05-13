@@ -54,8 +54,8 @@
                                                 <div class="panel-body">
                                                     <?php foreach ($messages as $item): ?>
                                                         <?php if ($item->parent == $topic->id): ?>
-                                                            <div class="list-group-item">
-                                                                <?=$item->message?>
+                                                            <div class="list-group-item" style="padding-bottom: 20px; padding-top: 16px">
+                                                                <?=nl2br($item->message)?>
                                                                 <?php if($this->session->userdata('id') == $item->idUser || $this->session->userdata('type') == 'administrador' || $this->session->userdata('type') == 'professor'): ?>
                                                                 <span class="pull-right text-muted" style="margin-left:15px">
                                                                     <a href="<?=site_url('course/microblogRemoveMessage/'.$idCourse.'/'.$item->id)?>"><i class="fa fa-trash-o"></i></a>
@@ -69,16 +69,14 @@
                                                         <?php endif ?>
                                                     <?php endforeach ?>
                                                     <p></p>
-                                                    <form action="<?=site_url('course/microblog_insert')?>" method="post">
-                                                        <div class="input-group">
-                                                            <input name="message" type="text" class="form-control input-sm" placeholder="Escreva sua resposta aqui...">
+                                                    <form action="<?=site_url('course/microblog_insert')?>" method="post" role="form">
+                                                        <div class="form-group">
+                                                            <textarea name="message" id="message" class="form-control" rows="3"></textarea>
                                                             <input name="idCourse" type="hidden" value="<?=$idCourse?>">
                                                             <input name="parent" type="hidden" value="<?=$topic->id?>">
-                                                            <span class="input-group-btn">
-                                                                <button type="submit" class="btn btn-warning btn-sm" id="btn-chat">
-                                                                    Enviar
-                                                                </button>
-                                                            </span>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <button type="submit" class="btn btn-warning pull-right">Enviar</button>
                                                         </div>
                                                     </form>
                                                 </div>
