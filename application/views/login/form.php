@@ -66,11 +66,11 @@
 
 					</form>
 					<?php if (!@$user_profile): ?>
-						<div class="form-group" style="width: 100px">
-					  		<a class="btn btn-block btn-social btn-facebook" href="<?= $login_url ?>" rel="nofollow">
-								<i class="fa fa-facebook"></i>
-								Login
-					        </a>
+						<div>
+                            <a class="btn btn-primary" href="<?= $login_url ?>" rel="nofollow" style="background-color: #3b5998;">
+                                <i class="fa fa-facebook"></i>
+                                Login com Facebook
+                            </a>
 				        </div>
 			    	<?php endif ?>
                 </div>

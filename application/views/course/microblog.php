@@ -116,7 +116,7 @@
     function microblogUpvote(idCourse, idTopic, element) {
 
         $.ajax({
-            url: 'http://localhost/ic-ws/index.php/course/microblogUpvote/'+idCourse+'/'+idTopic,
+            url: '<?=site_url("course/microblogUpvote/")?>/'+idCourse+'/'+idTopic,
             type: 'post',
             success: function(result)
             {

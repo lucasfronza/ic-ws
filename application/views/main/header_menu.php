@@ -38,6 +38,17 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <!-- Hotjar Tracking Code for localhost -->
+    <script>
+        (function(f,b){
+            var c;
+            f.hj=f.hj||function(){(f.hj.q=f.hj.q||[]).push(arguments)};
+            f._hjSettings={hjid:34902, hjsv:4};
+            c=b.createElement("script");c.async=1;
+            c.src="//static.hotjar.com/c/hotjar-"+f._hjSettings.hjid+".js?sv="+f._hjSettings.hjsv;
+            b.getElementsByTagName("head")[0].appendChild(c); 
+        })(window,document);
+    </script>
 </head>
 
 <body>
@@ -287,7 +298,7 @@
                             </li>
                         
                             <li>
-                                <a href="<?=site_url("login")?>" <?php if($menu == 'LOGIN') echo 'class="active"'; ?>>
+                                <a href="<?=site_url("login/index")?>" <?php if($menu == 'LOGIN') echo 'class="active"'; ?>>
                                     <i class="fa fa-sign-in fa-fw"></i> LOGIN
                                 </a>
                             </li>   
