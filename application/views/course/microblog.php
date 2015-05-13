@@ -45,7 +45,8 @@
                                                     </span>
                                                     <?php endif; ?>
                                                     <span class="pull-right text-muted" style="margin-left:15px">
-                                                        <a href="<?=site_url('course/microblogUpvote/'.$idCourse.'/'.$topic->id)?>"><i class="fa fa-thumbs-o-up"></i></a> <span class="badge"><?=$topic->upvotes?></span>
+                                                        <!-- <a href="<?=site_url('course/microblogUpvote/'.$idCourse.'/'.$topic->id)?>"><i class="fa fa-thumbs-o-up"></i></a> <span class="badge"><?=$topic->upvotes?></span> -->
+                                                        <a onclick="microblogUpvote(<?=$idCourse?>, <?=$topic->id?>, this)"><i class="fa fa-thumbs-o-up"></i></a> <span class="badge"><?=$topic->upvotes?></span>
                                                     </span>
                                                     <span class="pull-right text-muted small"><em><i class="fa fa-comment"></i> <?=$topic->name.' '.$topic->surname?></em></span>
                                                 </h4>
@@ -62,7 +63,8 @@
                                                                 </span>
                                                                 <?php endif; ?>
                                                                 <span class="pull-right text-muted" style="margin-left:15px">
-                                                                    <a href="<?=site_url('course/microblogUpvote/'.$idCourse.'/'.$item->id)?>"><i class="fa fa-thumbs-o-up"></i></a> <span class="badge"><?=$item->upvotes?></span>
+                                                                    <!-- <a href="<?=site_url('course/microblogUpvote/'.$idCourse.'/'.$item->id)?>"><i class="fa fa-thumbs-o-up"></i></a> <span class="badge"><?=$item->upvotes?></span> -->
+                                                                    <a onclick="microblogUpvote(<?=$idCourse?>, <?=$topic->id?>, this)"><i class="fa fa-thumbs-o-up"></i></a> <span class="badge"><?=$topic->upvotes?></span>
                                                                 </span>
                                                                 <span class="pull-right text-muted small"><em><i class="fa fa-comment"></i> <?=$item->name.' '.$item->surname?></em></span>
                                                             </div>
@@ -108,6 +110,22 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="<?=base_url('static/js/sb-admin-2.js')?>"></script>
+
+    <!-- Microblog -->
+    <script type="text/javascript">
+    function microblogUpvote(idCourse, idTopic, element) {
+
+        $.ajax({
+            url: 'http://localhost/ic-ws/index.php/course/microblogUpvote/'+idCourse+'/'+idTopic,
+            type: 'post',
+            success: function(result)
+            {
+                var json = JSON.parse(result);
+                $(element).siblings(".badge").html(json.upvotes);
+            }
+        });
+    }
+    </script>
 
 </body>
 

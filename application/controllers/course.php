@@ -460,17 +460,19 @@ class Course extends CI_Controller {
 
         if($this->microblog_model->checkUpvote($idTopic, $idUser))
         {
-            $this->microblog_model->deleteUpvote($idTopic, $idUser);
+            $upvotes = $this->microblog_model->deleteUpvote($idTopic, $idUser);
         }
         else
         {
             $obj = new stdClass();
             $obj->idTopic = $idTopic;
             $obj->idUser = $idUser;
-            $this->microblog_model->insertUpvote($obj);
+            $upvotes = $this->microblog_model->insertUpvote($obj);
         }
 
-        redirect('course/microblog/'.$idCourse);
+        $array = array('upvotes' => $upvotes);
+        echo json_encode($array);
+        //redirect('course/microblog/'.$idCourse);
     }
 
     public function microblogRemoveMessage($idCourse, $idTopic)

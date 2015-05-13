@@ -38,7 +38,8 @@ class Microblog_model extends CI_Model {
         $topic = $this->db->where('id', $obj->idTopic)->get('microblog')->row();
         $topic->upvotes = $topic->upvotes + 1;
         $this->db->where('id', $obj->idTopic)->update('microblog', $topic);
-        return $this->db->insert('microblogupvotes', $obj);
+        $this->db->insert('microblogupvotes', $obj);
+        return $topic->upvotes;
     }
 
     public function checkUpvote($idTopic, $idUser)
@@ -51,7 +52,8 @@ class Microblog_model extends CI_Model {
         $topic = $this->db->where('id', $idTopic)->get('microblog')->row();
         $topic->upvotes = $topic->upvotes - 1;
         $this->db->where('id', $idTopic)->update('microblog', $topic);
-        return $this->db->where('idTopic', $idTopic)->where('idUser', $idUser)->delete('microblogupvotes');
+        $this->db->where('idTopic', $idTopic)->where('idUser', $idUser)->delete('microblogupvotes');
+        return $topic->upvotes;
     }
 
     public function deleteMessage($idTopic, $idCourse)
