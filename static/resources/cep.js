@@ -1,4 +1,4 @@
-
+var consultou = false;
 function consultacep(cep) {
   document.getElementById('spinner').style.display = "";
   cep = cep.replace(/\D/g,"")
@@ -7,11 +7,13 @@ function consultacep(cep) {
   s.setAttribute('charset','utf-8')
   s.src=url
   document.querySelector('head').appendChild(s)
+  consultou = true;
 }
 
 function correiocontrolcep(valor) {
-  if (valor.erro) {
+  if (valor.erro && consultou == true) {
     alert('Cep não encontrado');        
+    consultou = false;
     return;
   };
   document.getElementById('address').value=valor.logradouro
