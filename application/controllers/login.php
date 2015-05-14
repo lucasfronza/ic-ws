@@ -24,7 +24,7 @@ class Login extends CI_Controller {
         $user = $this->facebook->getUser();
         
         //print_r($user);
-        
+
         if ($user) {
             try {
                 $data['user_profile'] = $this->facebook->api('/me');
@@ -32,9 +32,9 @@ class Login extends CI_Controller {
             } catch (FacebookApiException $e) {
                 $user = null;
             }
-        }else {
+        }/*else {
             $this->facebook->destroySession();
-        }
+        }*/
         
         if ($user) {
 
@@ -45,7 +45,7 @@ class Login extends CI_Controller {
 
         } else {
             $data['login_url'] = $this->facebook->getLoginUrl(array(
-                'redirect_uri' => site_url('login/authenticate'), 
+                'redirect_uri' => site_url('login/authenticate'),
                 'scope' => array('email') // permissions here
             ));
         }
