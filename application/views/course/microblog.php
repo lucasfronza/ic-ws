@@ -36,7 +36,7 @@
                                         <div class="panel panel-success">
                                             <div class="panel-heading">
                                                 <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?=$index?>" class="collapsed">
+                                                    <a href="<?=site_url('course/microblogTopic/'.$idCourse.'/'.$topic->id)?>">
                                                         <?=$topic->message?>
                                                     </a>
                                                     <?php if($this->session->userdata('id') == $topic->idUser ||$this->session->userdata('type') == 'administrador' || $this->session->userdata('type') == 'professor'): ?>
@@ -51,7 +51,7 @@
                                                     <span class="pull-right text-muted small"><em><i class="fa fa-comment"></i> <?=$topic->name.' '.$topic->surname?></em></span>
                                                 </h4>
                                             </div>
-                                            <div id="collapse<?=$index?>" class="panel-collapse collapse" style="height: 0px;">
+                                            <!-- <div id="collapse<?=$index?>" class="panel-collapse collapse" style="height: 0px;">
                                                 <div class="panel-body">
                                                     <?php foreach ($messages as $item): ?>
                                                         <?php if ($item->parent == $topic->id): ?>
@@ -62,9 +62,9 @@
                                                                     <a href="<?=site_url('course/microblogRemoveMessage/'.$idCourse.'/'.$item->id)?>"><i class="fa fa-trash-o"></i></a>
                                                                 </span>
                                                                 <?php endif; ?>
-                                                                <span class="pull-right text-muted" style="margin-left:15px">
+                                                                <span class="pull-right text-muted" style="margin-left:15px"> -->
                                                                     <!-- <a href="<?=site_url('course/microblogUpvote/'.$idCourse.'/'.$item->id)?>"><i class="fa fa-thumbs-o-up"></i></a> <span class="badge"><?=$item->upvotes?></span> -->
-                                                                    <a onclick="microblogUpvote(<?=$idCourse?>, <?=$topic->id?>, this)"><i class="fa fa-thumbs-o-up"></i></a> <span class="badge"><?=$topic->upvotes?></span>
+                                                                    <!-- <a onclick="microblogUpvote(<?=$idCourse?>, <?=$topic->id?>, this)"><i class="fa fa-thumbs-o-up"></i></a> <span class="badge"><?=$topic->upvotes?></span>
                                                                 </span>
                                                                 <span class="pull-right text-muted small"><em><i class="fa fa-comment"></i> <?=$item->name.' '.$item->surname?></em></span>
                                                             </div>
@@ -82,7 +82,7 @@
                                                         </div>
                                                     </form>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     <?php endif ?>
                                     <?php $index = $index + 1; ?>

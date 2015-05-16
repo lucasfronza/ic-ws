@@ -33,6 +33,14 @@ class Microblog_model extends CI_Model {
         return $this->db->where('idCourse', $idCourse)->get()->result();
     }
 
+    public function getTopic($idCourse, $idTopic)
+    {
+        $this->db->select('microblog.*, user.name, user.surname');
+        $this->db->from('microblog');
+        $this->db->join('user', 'microblog.idUser = user.id');
+        return $this->db->where('idCourse', $idCourse)->where('microblog.id', $idTopic)->get()->row();
+    }
+
     public function insertUpvote($obj)
     {
         $topic = $this->db->where('id', $obj->idTopic)->get('microblog')->row();

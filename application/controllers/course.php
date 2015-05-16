@@ -406,6 +406,20 @@ class Course extends CI_Controller {
         $this->load->view('course/microblog', $data);
     }
 
+    public function microblogTopic($idCourse, $idTopic)
+    {
+        $data["topic"] = $this->microblog_model->getTopic($idCourse, $idTopic);
+        $data["messages"] = $this->microblog_model->get($idCourse);
+        $data["idCourse"] = $idCourse;
+
+        $course = $this->course_model->getById($idCourse);
+        $header_menu['course'] = $course;
+        $header_menu['title'] = 'TURMAS';
+        $header_menu['menu'] = '';
+        $this->load->view('main/header_menu', $header_menu);
+        $this->load->view('course/microblog_topic', $data);
+    }
+
     public function microblog_insert()
     {
         $obj = new stdClass();
@@ -451,7 +465,13 @@ class Course extends CI_Controller {
             }
         }
 
-        redirect('course/microblog/'.$obj->idCourse);
+        if ($obj->parent == 0) {
+            redirect('course/microblog/'.$obj->idCourse);
+        } else {
+            redirect('course/microblogTopic/'.$obj->idCourse.'/'.$obj->parent);
+        }
+
+        
     }
 
     public function microblogUpvote($idCourse, $idTopic)
@@ -484,9 +504,15 @@ class Course extends CI_Controller {
             redirect('course/microblog/'.$idCourse);
         }
 
-        $this->microblog_model->deleteMessage($idTopic, $idCourse);
+        $topic = $this->microblog_model->getTopic($idCourse, $idTopic);
 
-        redirect('course/microblog/'.$idCourse);
+        $this->microblog_model->deleteMessage($idTopic, $idCourse);
+        
+        if ($topic->parent == 0) {
+            redirect('course/microblog/'.$idCourse);
+        } else {
+            redirect('course/microblogTopic/'.$idCourse.'/'.$topic->parent);
+        }
     }
     # Microblog - fim
 
