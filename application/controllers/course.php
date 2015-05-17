@@ -642,9 +642,11 @@ class Course extends CI_Controller {
     public function quiz($idCourse)
     {
         $quizzes = $this->course_model->getQuizzes($idCourse);
-
+        $answers = $this->course_model->getQuizResponses($this->session->userdata('id'), $idCourse);
+        
         $data['quizzes'] = $quizzes;
         $data['idCourse'] = $idCourse;
+        $data['answers'] = $answers;
 
         $course = $this->course_model->getById($idCourse);
         $header_menu['course'] = $course;
@@ -777,6 +779,16 @@ class Course extends CI_Controller {
         $data['idCourse'] = $idCourse;
         $data['idQuiz'] = $idQuiz;
         $data['quiz'] = json_decode($json);
+
+
+        $obj           = new stdClass();
+        $obj->idUser   = $this->session->userdata('id');
+        $obj->idCourse = $idCourse;
+        $obj->idQuiz   = $idQuiz;
+        $obj->correctAnswer  = $correctAnswer;
+        $obj->selectedAnswer = $selectedAnswer;
+        
+        $this->course_model->insertQuizAnswer($obj);
 
         $course = $this->course_model->getById($idCourse);
         $header_menu['course'] = $course;

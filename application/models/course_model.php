@@ -96,4 +96,29 @@ class Course_model extends CI_Model {
   {
     return $this->db->where('id', $idQuiz)->get('coursequizzes')->row();
   }
+
+  public function insertQuizAnswer($obj)
+  {
+    $answer = $this->db->where(
+      array('idCourse' => $obj->idCourse,
+       'idUser' => $obj->idUser,
+       'idQuiz' => $obj->idQuiz
+      ))->get('quizanswers')->row();
+    if (empty($answer)) {
+      return $this->db->insert('quizanswers', $obj);
+    } else {
+      return false;
+    }
+  }
+
+  public function getQuizResponses($idUser, $idCourse)
+  {
+    $obj = new stdClass();
+    $obj->answers = $this->db->where(
+      array('idCourse' => $idCourse,
+       'idUser' => $idUser
+      ))->count_all_results('quizanswers');
+    $obj->questions = $this->db->where('idCourse', $idCourse)->count_all_results('coursequizzes');
+    return $obj;
+  }
 }

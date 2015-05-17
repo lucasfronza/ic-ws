@@ -21,7 +21,7 @@
                     </legend>
                     <?php if($message == 'correct'): ?>
                         <h4>Comentário:</h4>
-                        <p class="text-justify"><?=$quiz->comment?></p>
+                        <p class="text-justify"><?=nl2br($quiz->comment)?></p>
                     <?php elseif($message == 'wrong'): ?>
                         <div class="panel panel-success">
                             <div class="panel-heading">
@@ -34,25 +34,25 @@
                                     <h4>Resposta correta:</h4>
                                     <p class="text-justify"><?php switch ($quiz->correctAnswer) {
                                         case '1':
-                                            echo $quiz->alternative1;
+                                            echo nl2br($quiz->alternative1);
                                             break;
                                         case '2':
-                                            echo $quiz->alternative2;
+                                            echo nl2br($quiz->alternative2);
                                             break;
                                         case '3':
-                                            echo $quiz->alternative3;
+                                            echo nl2br($quiz->alternative3);
                                             break;
                                         case '4':
-                                            echo $quiz->alternative4;
+                                            echo nl2br($quiz->alternative4);
                                             break;
                                         case '5':
-                                            echo $quiz->alternative5;
+                                            echo nl2br($quiz->alternative5);
                                             break;
                                         default:
                                             break;
                                     } ?></p>
                                     <h4>Comentário:</h4>
-                                    <p class="text-justify"><?=$quiz->comment?></p>
+                                    <p class="text-justify"><?=nl2br($quiz->comment)?></p>
                                 </div>
                             </div>
                         </div>

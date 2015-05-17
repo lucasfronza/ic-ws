@@ -13,6 +13,22 @@
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h3><?=$answers->answers?> de <?=$answers->questions?> questões respondidas</h3>
+                        <div class="progress">
+                            <?php if ($answers->questions == 0) {
+                                $progressBarWidth = 0;
+                            } else {
+                                $progressBarWidth = number_format(100*$answers->answers/$answers->questions, 0);
+                            } ?>
+                            <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width: <?=$progressBarWidth?>%">
+                                <?=$progressBarWidth?>%
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
                 <div class="col-lg-6">
                     <div class="table-responsive">
                         <table class="table">

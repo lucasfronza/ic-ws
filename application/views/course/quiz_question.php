@@ -21,35 +21,35 @@
                                 <input type="hidden" name="idCourse" value="<?=$idCourse?>">
                                 <input type="hidden" name="idQuiz" value="<?=$idQuiz?>">
                                 <div class="form-group">
-                                    <label><?=$quiz->question?></label>
+                                    <label><?=nl2br($quiz->question)?></label>
                                     <div class="radio">
                                         <label>
                                             <input type="radio" name="optionsRadios" id="optionsRadios1" value="1">
-                                            <?=$quiz->alternative1?>
+                                            <?=nl2br($quiz->alternative1)?>
                                         </label>
                                     </div>
                                     <div class="radio">
                                         <label>
                                             <input type="radio" name="optionsRadios" id="optionsRadios2" value="2">
-                                            <?=$quiz->alternative2?>
+                                            <?=nl2br($quiz->alternative2)?>
                                         </label>
                                     </div>
                                     <div class="radio">
                                         <label>
                                             <input type="radio" name="optionsRadios" id="optionsRadios3" value="3">
-                                            <?=$quiz->alternative3?>
+                                            <?=nl2br($quiz->alternative3)?>
                                         </label>
                                     </div>
                                     <div class="radio">
                                         <label>
                                             <input type="radio" name="optionsRadios" id="optionsRadios3" value="4">
-                                            <?=$quiz->alternative4?>
+                                            <?=nl2br($quiz->alternative4)?>
                                         </label>
                                     </div>
                                     <div class="radio">
                                         <label>
                                             <input type="radio" name="optionsRadios" id="optionsRadios3" value="5">
-                                            <?=$quiz->alternative5?>
+                                            <?=nl2br($quiz->alternative5)?>
                                         </label>
                                     </div>
                                 </div>
