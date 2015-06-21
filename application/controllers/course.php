@@ -798,5 +798,78 @@ class Course extends CI_Controller {
         $this->load->view('course/quiz_check', $data);
     }
     # Quiz - fim
+
+    # Wiki - início
+    public function wiki($idCourse)
+    {
+        $course = $this->course_model->getById($idCourse);
+        
+        //$url = 'http://lucasfronza.com.br/web-services/index.php/attendance';
+        $url = 'http://localhost/ws_restful/api/v1/wiki/'.$course->wikiKey;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept: application/json"));
+        $json = curl_exec($ch);
+        curl_close($ch);
+
+        $wiki = json_decode($json);
+        $data['wiki'] = $wiki[0];
+        $data['idCourse'] = $idCourse;
+
+        $header_menu['course'] = $course;
+        $header_menu['title'] = 'TURMAS';
+        $header_menu['menu'] = '';
+        $this->load->view('main/header_menu', $header_menu);
+        $this->load->view('course/wiki', $data);
+    }
+
+    public function wikiEdit($idCourse)
+    {
+        $course = $this->course_model->getById($idCourse);
+        
+        //$url = 'http://lucasfronza.com.br/web-services/index.php/attendance';
+        $url = 'http://localhost/ws_restful/api/v1/wiki/'.$course->wikiKey;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept: application/json"));
+        $json = curl_exec($ch);
+        curl_close($ch);
+
+        $wiki = json_decode($json);
+        $data['wiki'] = $wiki[0];
+        $data['idCourse'] = $idCourse;
+
+        $header_menu['course'] = $course;
+        $header_menu['title'] = 'TURMAS';
+        $header_menu['menu'] = '';
+        $this->load->view('main/header_menu', $header_menu);
+        $this->load->view('course/wiki_edit', $data);
+    }
+
+    public function wikiUpdate($idCourse)
+    {
+        $course = $this->course_model->getById($idCourse);
+        $wiki_text = $this->input->post('wiki_text');
+
+        $url = 'http://localhost/ws_restful/api/v1/wiki/'.$course->wikiKey;
+        $ch = curl_init();
+        curl_setopt_array($ch, array(
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_URL => $url,
+            CURLOPT_POSTFIELDS => http_build_query(
+                array(
+                    'text' => $wiki_text
+                )
+            ),
+            CURLOPT_HTTPHEADER => array("Accept: application/json", 'X-HTTP-Method-Override: PUT')
+        ));
+        $json = curl_exec($ch);
+        curl_close($ch);
+
+        redirect('course/wiki/'.$idCourse);
+    }
+    # Wiki - início
 }
 ?>

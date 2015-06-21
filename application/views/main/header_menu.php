@@ -266,6 +266,7 @@
                                     <?php else: ?>
                                     <li><a href="<?=site_url('course/manage/'.$course->id)?>"><i class="fa fa-pencil fa-fw"></i> Turma</a></li>
                                     <?php endif; ?>
+                                    <li><a href="<?=site_url('course/wiki/'.$course->id)?>"><i class="fa fa-pencil-square-o fa-fw"></i> Wiki</a></li>
                                     <li><a href="<?=site_url('course/microblog/'.$course->id)?>"><i class="fa fa-comments fa-fw"></i> Microblog</a></li>
                                     <li><a href="<?=site_url('course/users/'.$course->id)?>"><i class="fa fa-users fa-fw"></i> Participantes</a></li>
                                     <li><a href="<?=site_url('course/scoreBoard/'.$course->id)?>"><i class="fa fa-table fa-fw"></i> Quadro de Notas</a></li>
