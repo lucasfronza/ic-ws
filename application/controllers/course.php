@@ -85,6 +85,21 @@ class Course extends CI_Controller {
         curl_close($curl);
         $response_score = json_decode($json);
 
+        // Cria o Wiki
+        $curl = curl_init();
+        $url = 'http://localhost/ws_restful/api/v1/wiki';
+
+        curl_setopt_array($curl, array(
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_URL => $url,
+            CURLOPT_POST => 1,
+            CURLOPT_POSTFIELDS => array('' => '' ),
+            CURLOPT_HTTPHEADER => array("Accept: application/json")
+        ));
+        $json = curl_exec($curl);
+        curl_close($curl);
+        $response_wiki = json_decode($json);
+
         // Insere a turma criada no banco de dados
         $course = new stdClass();
         $course->name = $this->input->post('name');
@@ -101,6 +116,10 @@ class Course extends CI_Controller {
         if($response_score->status == 1)
         {
             $course->scoreKey = $response_score->key;
+        }
+        if($response_wiki->status == 1)
+        {
+            $course->wikiKey = $response_wiki->key;
         }
         // TODO resolver o problema de o serviço retornar status 0 ou não estar funcionando
         $this->course_model->insert($course);

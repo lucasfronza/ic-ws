@@ -53,6 +53,10 @@
     <!-- Custom Theme JavaScript -->
     <script src="<?=base_url('static/js/sb-admin-2.js')?>"></script>
 
+    <!-- TinyMCE -->
+    <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+    <script>tinymce.init({selector:'textarea'});</script>
+
 </body>
 
 </html>
